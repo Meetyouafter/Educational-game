@@ -1,7 +1,7 @@
 import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 
-import { globalStyles } from '../shared/styles'
+import { globalStyles } from '../shared/globalStyle'
 
 const cache = createCache({ key: 'next' })
 

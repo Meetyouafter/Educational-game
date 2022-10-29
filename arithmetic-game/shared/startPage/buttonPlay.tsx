@@ -15,6 +15,15 @@ const startButton = css({
     color: "#FFFFFF",
   });
   
-  export const ButtonPlay = styled.button`
-    ${startButton};
-  `;
+  export const ButtonPlay  = ({ itemsCount, itemsType}) => {
+    return (
+        <button 
+        css={startButton}
+        onClick={() => console.log(itemsCount, itemsType)}
+        >
+            Играть
+    
+        </button>
+    )
+
+  }

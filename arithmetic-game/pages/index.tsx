@@ -20,7 +20,7 @@ import { useState } from "react";
 const Home = () => {
   const [gameValues, setGameValues] = useState("A");
   const [objectsCount, setObjectsCount] = useState(2);
-
+  
   return (
     <div>
       <Wrapper>
@@ -92,7 +92,7 @@ const Home = () => {
               margin-top: 99px;
             `}
           >
-            <ButtonPlay>Играть</ButtonPlay>
+            <ButtonPlay itemsCount={gameValues} itemsType={objectsCount}/>
           </div>
         </Container>
       </Wrapper>

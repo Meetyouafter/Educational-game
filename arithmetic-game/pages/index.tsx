@@ -10,117 +10,109 @@ import {
 } from "../shared/styles";
 import { Wrapper } from "../shared/startPage/wrapper";
 import { Container } from "../shared/startPage/container";
+import { ModeButton1} from "../shared/startPage/modeButton1";
 import {
-  FirstModeLine,
-  ModeButton,
-  SecondModeLine,
   StartButton,
   Title,
-  Values,
 } from "../shared/startPage/playBoard";
+import { SliderInput } from "../shared/startPage/sliderInput";
+import { useState } from "react";
 
-const Home = () => (
-  <div>
-    <Wrapper>
-      <Container>
-      <div
-          css={css`
-            margin-top: 57px;
-          `}>
-        <Title>Кол-во предметов</Title>
-</div>
-        <div
-          css={css`
-            margin-top: 16px;
-            display: flex;
-            justify-content: space-around;
-          `}
-        >
-          <Values>2</Values>
-          <Values>3</Values>
-          <Values>4</Values>
-          <Values>5</Values>
-        </div>
-        <div
-          css={css`
-            display: flex;
-            justify-content: center;
-            margin-top: 2.58px;
+const Home = () => {
+  const [gameValues, setGameValues] = useState("A");
+  const [objectsCount, setObjectsCount] = useState(2);
 
-          `}
-        >
-          <FirstModeLine></FirstModeLine>
-        </div>
-        <div
-          css={css`
-            margin-top: 54px;
-          `}
-        >
-        <Title>Значения</Title>
-        </div>
-        <div
-          css={css`
-            margin-top: 18px;
-            display: flex;
-            justify-content: space-around;
-          `}
-        >
-          <Values>А</Values>
-          <Values>9</Values>
-          <Values>19</Values>
-          <Values>50</Values>
-          <Values>99</Values>
-          <Values>999</Values>
-        </div>
+  return (
+    <div>
+      <Wrapper>
+        <Container>
+          <div
+            css={css`
+              margin-top: 40px;
+              dsplay: flex;
+            `}
+          >
+            <Title>Кол-во предметов</Title>
+          </div>
+          <div
+            css={css`
+              margin-top: 39px;
+              width: 366px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            `}
+          >
+            <SliderInput
+              value={objectsCount}
+              onChange={setObjectsCount}
+              marks={[2, 3, 4, 5]}
+            />
+          </div>
+          <div
+            css={css`
+              margin-top: 69px;
+            `}
+          >
+            <Title>Значения</Title>
+          </div>
+          <div
+            css={css`
+              margin-top: 40px;
+              width: 531px;
+              display: flex;
+              justify-content: space-between;
+              align-item: center;
+            `}
+          >
+            <SliderInput
+              value={gameValues}
+              onChange={setGameValues}
+              marks={["A", 9, 19, 50, 99, 999]}
+            />
+          </div>
 
-        <div
-          css={css`
-            display: flex;
-            margin-top: 3px;
-            justify-content: center;
-          `}
-        >
-          <SecondModeLine></SecondModeLine>
-        </div>
+          <div
+            css={css`
+              display: flex;
+              margin-top: 85px;
+              flex-direction: row;
+              justify-content: space-between;
+              margin-left: 80px;
+              margin-right: 40px;
+            `}
+          >
+            <ModeButton1>По возрастанию</ModeButton1>
+            <ModeButton2>По убыванию</ModeButton2>
+          </div>
 
-        <div
-          css={css`
-            display: flex;
-            margin-top: 73px;
-            flex-direction: row;
-            justify-content: space-around;
-          `}
-        >
-          <ModeButton>По возрастанию</ModeButton>
-          <ModeButton>По убыванию</ModeButton>
-        </div>
+          <div
+            css={css`
+              display: flex;
+              justify-content: center;
+              margin-top: 103px;
+            `}
+          >
+            <StartButton>Играть</StartButton>
+          </div>
+        </Container>
+      </Wrapper>
 
-        <div
-          css={css`
-            display: flex;
-            justify-content: center;
-            margin-top: 99.56px;
-          `}
-        >
-          <StartButton>Играть</StartButton>
-        </div>
-      </Container>
-    </Wrapper>
+      <Basic>Cool Styles</Basic>
 
-    <Basic>Cool Styles</Basic>
+      <Pink>Pink text2</Pink>
 
-    <Pink>Pink text2</Pink>
+      <Combined>
+        With <code>:hover</code>.
+      </Combined>
 
-    <Combined>
-      With <code>:hover</code>.
-    </Combined>
+      <Animated animation={bounce}>Let's bounce.</Animated>
 
-    <Animated animation={bounce}>Let's bounce.</Animated>
-
-    <ComponentSelectorsExtended>
-      <BasicExtended>Nested</BasicExtended>
-    </ComponentSelectorsExtended>
-  </div>
-);
+      <ComponentSelectorsExtended>
+        <BasicExtended>Nested</BasicExtended>
+      </ComponentSelectorsExtended>
+    </div>
+  );
+};
 
 export default Home;

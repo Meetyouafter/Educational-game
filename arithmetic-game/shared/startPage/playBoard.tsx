@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 const title = css({
   "font-family": "Helvetica",
   "font-style": "normal",
-  "font-weight": "400",
+  "font-weight": "700",
   "font-size": "32px",
   "line-height": "44px",
   display: "flex",
@@ -36,6 +36,7 @@ export const StartButton = styled.button`
 
 const modeButton = css({
   background: "#FFD748",
+  "width": "250px",
   "border-radius": "20px",
   "font-family": "Calibri",
   "font-style": "normal",
@@ -49,40 +50,3 @@ export const ModeButton = styled.button`
   ${modeButton};
 `;
 
-const firstModeLine = css({
-  width: "366px",
-  height: "21px",
-  background: "#FFD748",
-  "border-radius": "10px",
-});
-
-export const FirstModeLine = styled.div`
-  ${firstModeLine};
-`;
-
-const secondModeLine = css({
-    width: "531px",
-    height: "21px",
-    background: "#FFD748",
-    "border-radius": "10px",
-  });
-  
-  export const SecondModeLine = styled.div`
-    ${secondModeLine};
-  `;
-
-const values = css({
-  width: "11.79px",
-  height: "27.42px",
-  "font-family": "Calibri",
-  "font-style": "normal",
-  "font-weight": "700",
-  "font-size": "24px",
-  "line-height": "29px",
-  "text-align": "center",
-  color: "#4F4B61",
-});
-
-export const Values = styled.div`
-  ${values};
-`;

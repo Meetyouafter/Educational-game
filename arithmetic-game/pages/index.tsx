@@ -10,11 +10,10 @@ import {
 } from "../shared/styles";
 import { Wrapper } from "../shared/startPage/wrapper";
 import { Container } from "../shared/startPage/container";
-import { ModeButton1} from "../shared/startPage/modeButton1";
-import {
-  StartButton,
-  Title,
-} from "../shared/startPage/playBoard";
+import { ModeButtonUp } from "../shared/startPage/buttonUp";
+import { ModeButtonDown } from "../shared/startPage/buttonDown";
+import { Title } from "../shared/startPage/title";
+import { ButtonPlay } from "../shared/startPage/buttonPlay";
 import { SliderInput } from "../shared/startPage/sliderInput";
 import { useState } from "react";
 
@@ -36,7 +35,7 @@ const Home = () => {
           </div>
           <div
             css={css`
-              margin-top: 39px;
+              margin-top: 38px;
               width: 366px;
               display: flex;
               justify-content: center;
@@ -51,7 +50,7 @@ const Home = () => {
           </div>
           <div
             css={css`
-              margin-top: 69px;
+              margin-top: 68px;
             `}
           >
             <Title>Значения</Title>
@@ -75,25 +74,25 @@ const Home = () => {
           <div
             css={css`
               display: flex;
-              margin-top: 85px;
+              margin-top: 81px;
               flex-direction: row;
               justify-content: space-between;
-              margin-left: 80px;
-              margin-right: 40px;
+              margin-left: 60px;
+              margin-right: 60px;
             `}
           >
-            <ModeButton1>По возрастанию</ModeButton1>
-            <ModeButton2>По убыванию</ModeButton2>
+            <ModeButtonUp>По возрастанию</ModeButtonUp>
+            <ModeButtonDown>По убыванию</ModeButtonDown>
           </div>
 
           <div
             css={css`
               display: flex;
               justify-content: center;
-              margin-top: 103px;
+              margin-top: 99px;
             `}
           >
-            <StartButton>Играть</StartButton>
+            <ButtonPlay>Играть</ButtonPlay>
           </div>
         </Container>
       </Wrapper>

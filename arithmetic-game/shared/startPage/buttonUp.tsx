@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
-const modeButton = css({
+const modeButtonUp = css({
   background: "#FFD748",
-  "width": `${({ width = 100 }) => width}`,
+  "width": "270px",
   "border-radius": "20px",
   "font-family": "Calibri",
   "font-style": "normal",
@@ -13,6 +13,6 @@ const modeButton = css({
   color: "#423F45",
 });
 
-export const ModeButton2 = styled.button>`
-  ${modeButton};
+export const ModeButtonUp = styled.button`
+  ${modeButtonUp};
 `;

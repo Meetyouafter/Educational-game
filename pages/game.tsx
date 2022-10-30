@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Wrapper } from "../shared/FinalPage/wrapper";
-import { Container } from "../shared/FinalPage/container";
+import { WrapperForGame } from "../shared/gamePage/wrapperGame";
+import { ContainerForItems } from "../shared/gamePage/containerGame";
 
 const varOfDesign = ['candies', 'flowers', 'toys', 'coins'];
 
@@ -9,10 +9,10 @@ const varOfDesign = ['candies', 'flowers', 'toys', 'coins'];
 const FinalPage = () => {
   return (
     <div>
-      <Wrapper>
-        <Container>
-        </Container>
-      </Wrapper>
+      <WrapperForGame>
+        <ContainerForItems>
+        </ContainerForItems>
+      </WrapperForGame>
     </div>
   );
 };

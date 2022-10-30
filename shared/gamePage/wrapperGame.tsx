@@ -4,13 +4,9 @@ import { css } from "@emotion/react";
 const pageWrapper = css({
   width: "980px",
   height: "810px",
-  left: "0px",
-  top: "0px",
-  backgroundImage: 'url("/static/startPageBackground.png")',
-  margin: "0",
-  position: "relative",
+  backgroundImage: 'url("/static/candies/background.png")',
 });
 
-export const Wrapper = styled.div`
+export const WrapperForGame = styled.div`
   ${pageWrapper};
 `;

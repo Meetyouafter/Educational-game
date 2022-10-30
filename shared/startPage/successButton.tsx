@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
-const startButton = css({
+const successButton = css({
   background: "#38DF7A",
   "box-shadow": "0px 4px 5px rgba(0, 0, 0, 0.1)",
   "border-radius": "20px",
@@ -16,12 +16,11 @@ const startButton = css({
   cursor: "pointer",
 });
 
-export const ButtonPlay = ({ itemsCount, itemsType }) => {
+export const SuccessButton = ({ changeStatusGame }) => {
   return (
     <button
-      css={startButton}
-      onClick={() => window.location.assign('./game')}
-      //onClick={() => console.log(itemsCount, itemsType)}
+      css={successButton}
+      onClick={changeStatusGame}
     >
       Играть
     </button>

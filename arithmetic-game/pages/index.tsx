@@ -20,7 +20,16 @@ import { useState } from "react";
 const Home = () => {
   const [gameValues, setGameValues] = useState("A");
   const [objectsCount, setObjectsCount] = useState(2);
+  const [active, setActive] = useState('');
   
+  const changeClass = (type:string) => () => {
+    setActive(type)
+  }
+
+  const choiceGameType = (active) => {
+    
+  }
+
   return (
     <div>
       <Wrapper>
@@ -81,8 +90,8 @@ const Home = () => {
               margin-right: 60px;
             `}
           >
-            <ModeButtonUp>По возрастанию</ModeButtonUp>
-            <ModeButtonDown>По убыванию</ModeButtonDown>
+            <ModeButtonUp active={active} changeClass={changeClass('up')}>По возрастанию</ModeButtonUp>
+            <ModeButtonDown active={active} changeClass={changeClass('down')}>По убыванию</ModeButtonDown>
           </div>
 
           <div

@@ -6,7 +6,7 @@ const pageWrapper = css({
   height: "810px",
   left: "0px",
   top: "0px",
-  backgroundImage: 'url("/static/startPageBackground.png")',
+  backgroundImage: 'url("./../../public/static/startPageBackground.png")',
   margin: "0",
   position: "relative",
 });

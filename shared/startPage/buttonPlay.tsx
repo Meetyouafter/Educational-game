@@ -20,7 +20,7 @@ export const ButtonPlay = ({ itemsCount, itemsType }) => {
   return (
     <button
       css={startButton}
-      onClick={() => window.location.assign('./../pages/game.tsx')}
+      onClick={() => window.location.assign('./game')}
       //onClick={() => console.log(itemsCount, itemsType)}
     >
       Играть

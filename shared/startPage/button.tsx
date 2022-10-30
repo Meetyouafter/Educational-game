@@ -5,12 +5,12 @@ import cn from 'classnames';
 export const Button = ({ active, onClick, children }) => {
 
   const activeColor = "#FFD748";
-  const notActiveColor = "blue";
+  const notActiveColor = "rgba(255, 215, 72, 0.56)";
 console.log(active)  
   return (
     <button
       css={css({
-        backgroundColor: `${{active} ? "red" : "green"}`,
+        backgroundColor: `${active ? activeColor : notActiveColor}`,
         "border-radius": "20px",
         "font-family": "Calibri",
         "font-style": "normal",

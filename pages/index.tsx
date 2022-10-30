@@ -5,55 +5,31 @@ import { Title } from "../shared/startPage/title";
 import { SuccessButton } from "../shared/startPage/successButton";
 import { SliderInput } from "../shared/startPage/sliderInput";
 import { useState } from "react";
-import { WrapperForGame } from "../shared/gamePage/wrapperGame";
+import { WrapperForGame } from "../shared/gamePage/wrapperForGame";
 import { WrapperForStart } from "../shared/startPage/wrapper";
-import { ContainerForItems } from "../shared/gamePage/containerGame";
+import { ContainerForItems } from "../shared/gamePage/containerForItems";
+import { GameElement } from "../shared/gamePage/number";
 
 const Home = () => {
-  const [gameValues, setGameValues] = useState("A");
-  const [objectsCount, setObjectsCount] = useState(2);
+  const [countOfElementsForGame, setCountOfElementsForGame] = useState("A");
+  const [typeOfElementsForGame, setTypeOfElementsForGame] = useState(2);
   const [gameMode, setGameMode] = useState("asc");
-  const [setting, setSetting] = useState(true);
+  const [settingOfGame, setSettingOfGame] = useState(true);
 
-  const handleGameModeChange = (type:string) => () => {
-    setGameMode(type)
-    console.log(gameMode)
-  }
-
-  const randomIntFromInterval = (min, max) => { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
-
-  const valuesForGameWithNumbers = (quantity, maxValue) => {
-    let result = [];
-    for (let i = 1; i <= quantity; i += 1) { 
-      let t = randomIntFromInterval(1, maxValue);
-      result.push(t)
-    }
-    return result;
-  }
-
-const arrayWithNumbers = valuesForGameWithNumbers(gameValues, objectsCount)
-const minElementOfNumbers = Math.min(...arrayWithNumbers)
-const indexOfMinElement = arrayWithNumbers.indexOf(minElementOfNumbers)
-arrayWithNumbers.splice(indexOfMinElement, 1)
-  
-
-/*
-const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-
-  const getValuesForGameWithLetters = (quantity) => {
-    let result = [];
-    for (let i = 1; i <= quantity; i += 1) {
-      result.push(alphabet[randomIntFromInterval(1, 33)])
-    }
-    return result;
-  }
-*/
+  const handleGameModeChange = (type: string) => () => {
+    setGameMode(type);
+  };
 
   const changeStatusGame = () => {
-    setSetting(!setting);
+    setSettingOfGame(!settingOfGame);
   };
+
+  const randomIntFromInterval = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+
+  const variantesOfDesign = ["candies", "flowers", "toys", "coins"];
+  const design = variantesOfDesign[randomIntFromInterval(0, 3)];
 
   const gameSettingPage = (
     <div>
@@ -77,8 +53,8 @@ const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭ
             `}
           >
             <SliderInput
-              value={objectsCount}
-              onChange={setObjectsCount}
+              value={typeOfElementsForGame}
+              onChange={setTypeOfElementsForGame}
               marks={[2, 3, 4, 5]}
             />
           </div>
@@ -99,8 +75,8 @@ const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭ
             `}
           >
             <SliderInput
-              value={gameValues}
-              onChange={setGameValues}
+              value={countOfElementsForGame}
+              onChange={setCountOfElementsForGame}
               marks={["A", 9, 19, 50, 99, 999]}
             />
           </div>
@@ -115,10 +91,16 @@ const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭ
               margin-right: 60px;
             `}
           >
-            <Button active={gameMode === 'asc'} onClick={handleGameModeChange("asc")}>
+            <Button
+              active={gameMode === "asc"}
+              onClick={handleGameModeChange("asc")}
+            >
               По возрастанию
             </Button>
-            <Button active={gameMode === 'desc'} onClick={handleGameModeChange("desc")}>
+            <Button
+              active={gameMode === "desc"}
+              onClick={handleGameModeChange("desc")}
+            >
               По убыванию
             </Button>
           </div>
@@ -137,184 +119,28 @@ const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭ
     </div>
   );
 
-
-
   const gamePage = (
     <div>
-      <WrapperForGame>
+      <WrapperForGame design={design}>
         <div
           css={css`
-            height: 500px;
-            
+            position: relative;
+            left: 20px;
+            top: 200px;
           `}
         >
-          <div
-            css={css`
-            position:relative;
-      left:20px; top:200px;
-            `}
-          >
-            <img
-              css={css`
-                position: absolute;
-                z-index: 1;
-              `}
-              src="/static/candies/item1.png"
-            />
-            <span
-              css={css`
-                font-size: 42px;
-                color: white;
-                position: absolute;
-                padding-top: 40px;
-                padding-left: 40px;
-                z-index: 2;
-              `}
-            >
-              {arrayWithNumbers[0]}
-            </span>
-          </div>
-          <div
-            css={css`
-            position:relative;
-            left:180px; top:250px;
-            `}
-          >
-            <img
-              css={css`
-                position: absolute;
-                z-index: 1;
-              `}
-              src="/static/candies/item2.png"
-            />
-            <span
-              css={css`
-                font-size: 42px;
-                color: white;
-                position: absolute;
-                padding-top: 40px;
-                padding-left: 40px;
-                z-index: 2;
-              `}
-            >
-              {arrayWithNumbers[1]}
-              
-            </span>
-          </div>
-          <div
-            css={css`
-            position:relative;
-            left:350px; top:180px;
-            `}
-          >
-            <img
-              css={css`
-                position: absolute;
-                z-index: 1;
-              `}
-              src="/static/candies/item3.png"
-            />
-            <span
-              css={css`
-                font-size: 42px;
-                color: white;
-                position: absolute;
-                padding-top: 40px;
-                padding-left: 40px;
-                z-index: 2;
-              `}
-            >
-              {arrayWithNumbers[2]}
-              
-            </span>
-          </div>
-          <div
-            css={css`
-            position:relative;
-            left:500px; top:300px;
-            `}
-          >
-            <img
-              css={css`
-                position: absolute;
-                z-index: 1;
-              `}
-              src="/static/candies/item4.png"
-            />
-            <span
-              css={css`
-                font-size: 42px;
-                color: white;
-                position: absolute;
-                padding-top: 40px;
-                padding-left: 40px;
-                z-index: 2;
-              `}
-            >
-              {arrayWithNumbers[3]}
-              
-            </span>
-          </div>
-          <div
-            css={css`
-            position:relative;
-            left:700px; top:200px;
-            `}
-          >
-            <img
-              css={css`
-                position: absolute;
-                z-index: 1;
-              `}
-              src="/static/candies/item5.png"
-            />
-            <span
-              css={css`
-                font-size: 42px;
-                color: white;
-                position: absolute;
-                padding-top: 40px;
-                padding-left: 40px;
-                z-index: 2;
-              `}
-            >
-              {arrayWithNumbers[4]}
-            </span>
-          </div>
-          </div>
-
-          <div
-            css={css`
-            position:relative;
-            left:30px; top:40px;
-            `}
-          >
-            <img
-              css={css`
-                position: absolute;
-                z-index: 1;
-              `}
-              src="/static/candies/item0.png"
-            />
-            <span
-              css={css`
-                font-size: 42px;
-                color: white;
-                position: absolute;
-                padding-top: 40px;
-                padding-left: 40px;
-                z-index: 2;
-              `}
-            >
-              {minElementOfNumbers}
-            </span>
-          </div>
-        <ContainerForItems>Lol</ContainerForItems>
+          <GameElement
+            count={countOfElementsForGame}
+            mode={typeOfElementsForGame}
+            design={design}
+          />
+        </div>
+        <ContainerForItems design={design} />
       </WrapperForGame>
     </div>
   );
 
-  return setting ? gameSettingPage : gamePage;
+  return settingOfGame ? gameSettingPage : gamePage;
 };
 
 export default Home;

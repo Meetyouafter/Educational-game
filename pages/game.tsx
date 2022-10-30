@@ -1,10 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { WrapperForGame } from "../shared/gamePage/wrapperGame";
-import { ContainerForItems } from "../shared/gamePage/containerGame";
-
-const varOfDesign = ['candies', 'flowers', 'toys', 'coins'];
-
+import { WrapperForGame } from "../shared/gamePage/wrapperForGame";
+import { ContainerForItems } from "../shared/gamePage/containerForItems";
 
 const FinalPage = () => {
   return (

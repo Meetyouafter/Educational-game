@@ -6,7 +6,7 @@ export const Button = ({ active, onClick, children }) => {
 
   const activeColor = "#FFD748";
   const notActiveColor = "rgba(255, 215, 72, 0.56)";
-console.log(active)  
+  
   return (
     <button
       css={css({

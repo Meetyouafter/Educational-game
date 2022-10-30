@@ -122,13 +122,7 @@ const Home = () => {
   const gamePage = (
     <div>
       <WrapperForGame design={design}>
-        <div
-          css={css`
-            position: relative;
-            left: 20px;
-            top: 200px;
-          `}
-        >
+        <div>
           <GameElement
             count={countOfElementsForGame}
             mode={typeOfElementsForGame}

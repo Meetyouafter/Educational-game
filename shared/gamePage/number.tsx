@@ -28,10 +28,6 @@ fontSize: "56px",
 lineHeight: "68px",
 letterSpacing: "2px",
 color: "#FFFFFF",
-position: "absolute",
-paddingTop: "30px",
-paddingLeft: "40px",
-zIndex: "2",
   })
 
   return (
@@ -40,10 +36,7 @@ zIndex: "2",
             return (
             <div>
             <img src={`/static/${design}/item${arrayWithNumbers.indexOf(element)}.png`} 
-              css={css`
-                position: absolute;
-                z-index: 1;
-              `} />
+              />
             <span
             css={textStyles}>{element}</span>
           </div>

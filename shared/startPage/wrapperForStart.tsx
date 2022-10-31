@@ -4,12 +4,12 @@ import { css } from "@emotion/react";
 const pageWrapper = css({
   width: "980px",
   height: "810px",
-  left: "0px",
-  top: "0px",
   backgroundImage: 'url("/static/startPageBackground.png")',
   margin: "0",
-  position: "relative",
-});
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  });
 
 export const WrapperForStart = styled.div`
   ${pageWrapper};

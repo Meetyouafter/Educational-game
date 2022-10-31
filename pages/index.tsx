@@ -6,9 +6,9 @@ import { SuccessButton } from "../shared/startPage/successButton";
 import { SliderInput } from "../shared/startPage/sliderInput";
 import { useState } from "react";
 import { WrapperForGame } from "../shared/gamePage/wrapperForGame";
-import { WrapperForStart } from "../shared/startPage/wrapper";
+import { WrapperForStart } from "../shared/startPage/wrapperForStart";
 import { ContainerForItems } from "../shared/gamePage/containerForItems";
-import { GameElement } from "../shared/gamePage/element";
+import { GameElement } from "../shared/gamePage/gameElement";
 import { WinWindow } from "../shared/winWindow";
 import Game from "../shared/gamePage/game";
 
@@ -129,7 +129,7 @@ const Home = () => {
       <WrapperForGame design={design}>
       <div
       css={css`
-        height: 500px;
+        height: 320px;
         position:relative;
       `}
     >
@@ -140,18 +140,20 @@ const Home = () => {
             gameMode={gameMode}
           />
         </div>
-        <ContainerForItems design={design} count={countOfElementsForGame}/>
+
+        <Game
+            design={design}
+            count={countOfElementsForGame}
+            elementType={typeOfElementsForGame}
+            gameMode={gameMode}
+        />
         <div
       css={css`
         display: flex;
         width: 500px;
       `}
     >
-      <Game 
-      count={countOfElementsForGame} 
-      elementType={typeOfElementsForGame}
-      gameMode={gameMode}
-      />
+
       </div>
 
       </WrapperForGame>

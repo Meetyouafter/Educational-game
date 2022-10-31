@@ -10,6 +10,7 @@ const container = css({
   "border-image-slice": "1",
   background: "#ffffff",
   "border-radius": "40px",
+  alignItems: "center",
 });
 
 export const Container = styled.div`

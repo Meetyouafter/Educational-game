@@ -6,26 +6,52 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
   };
 
   const valuesForGameWithNumbers = (count, mode) => {
-    let result = [] 
-    let rundomnumber;  
+    let result = [];
+    let randomNumber;
     while (result.length <= count) {
-      rundomnumber = Math.floor(Math.random() * mode);
-      if (result.indexOf(rundomnumber) == -1) {
-        result.push(rundomnumber);        
+      randomNumber = Math.floor(Math.random() * mode);
+      if (result.indexOf(randomNumber) == -1) {
+        result.push(randomNumber);
       }
     }
-    return result
-  }
+    return result;
+  };
 
   const numbersForUpMode = valuesForGameWithNumbers(mode, count);
   const minElementOfNumbers = Math.min(...numbersForUpMode);
-  const indexOfMinElement = numbersForUpMode.indexOf(minElementOfNumbers);
-  numbersForUpMode.splice(indexOfMinElement, 1);
+  const indexOfMinNumberElement = numbersForUpMode.indexOf(minElementOfNumbers);
+  numbersForUpMode.splice(indexOfMinNumberElement, 1);
 
   const numbersForDownMode = valuesForGameWithNumbers(mode, count);
   const maxElementOfNumbers = Math.max(...numbersForDownMode);
-  const indexOfMaxElement = numbersForDownMode.indexOf(maxElementOfNumbers);
-  numbersForDownMode.splice(indexOfMaxElement, 1);
+  const indexOfMaxNumberElement =
+    numbersForDownMode.indexOf(maxElementOfNumbers);
+  numbersForDownMode.splice(indexOfMaxNumberElement, 1);
+
+  const valuesForGameWithLetters = (count) => {
+    const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+    let result = [];
+    let randomLetter;
+    while (result.length <= count) {
+      randomLetter = alphabet[randomIntFromInterval(0, 32)];
+      if (result.indexOf(randomLetter) == -1) {
+        result.push(randomLetter);
+      }
+    }
+    return result;
+  };
+
+  const lettersForUpMode = valuesForGameWithLetters(count);
+  const minElementOfLetters = lettersForUpMode.sort()[0];
+  const indexOfMinLettersElement =
+    lettersForUpMode.indexOf(minElementOfLetters);
+  lettersForUpMode.splice(indexOfMinLettersElement, 1);
+
+  const lettersForDownMode = valuesForGameWithLetters(count);
+  const maxElementOfLetters = lettersForDownMode.sort()[count - 1];
+  const indexOfMaxLettersElement =
+    lettersForDownMode.indexOf(maxElementOfLetters);
+  lettersForDownMode.splice(indexOfMaxLettersElement, 1);
 
   const textStyles = css({
     fontFamily: "Calibri",
@@ -42,15 +68,45 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
   });
 
   const gameView = () => {
-    if (gameMode === 'asc') {
-      return (
-        <div>
-        {numbersForUpMode.map((element, idx) => {
-          return (
+    if (gameMode === "asc") {
+      if (count !== "A") {
+        return (
+          <div>
+            {numbersForUpMode.map((element, idx) => {
+              return (
+                <div
+                  css={css`
+                    position: absolute;
+                    padding-left: ${200 * idx}px;
+                  `}
+                >
+                  <img
+                    css={css`
+                      position: absolute;
+                      z-index: 1;
+                    `}
+                    src={`/static/${design}/item${numbersForUpMode.indexOf(
+                      element
+                    )}.png`}
+                  />
+                  <span css={textStyles}>{element}</span>
+                </div>
+              );
+            })}
             <div
               css={css`
                 position: absolute;
-                padding-left: ${200 * idx}px;
+                padding-top: 400px;
+                padding-left: 100px;
+              `}
+            >
+              <img src={`/static/upMode.png`} />
+            </div>
+
+            <div
+              css={css`
+                position: absolute;
+                padding-top: 600px;
               `}
             >
               <img
@@ -58,51 +114,53 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
                   position: absolute;
                   z-index: 1;
                 `}
-                src={`/static/${design}/item${numbersForUpMode.indexOf(
-                  element
-                )}.png`}
+                src={`/static/${design}/item5.png`}
               />
-              <span css={textStyles}>{element}</span>
+              <span css={textStyles}>{minElementOfNumbers}</span>
             </div>
-          );
-        })}
-        <div
-          css={css`
-            position: absolute;
-            padding-top: 400px;
-            padding-left: 100px;
-          `}
-        >
-          <img src={`/static/upMode.png`} />
-        </div>
-  
-        <div
-          css={css`
-            position: absolute;
-            padding-top: 600px;
-          `}
-        >
-          <img
-            css={css`
-              position: absolute;
-              z-index: 1;
-            `}
-            src={`/static/${design}/item5.png`}
-          />
-          <span css={textStyles}>{minElementOfNumbers}</span>
-        </div>
-      </div>
-      )
-    }
-    if (gameMode === 'desc') {
-      return (
-        <div>
-        {numbersForDownMode.map((element, idx) => {
-          return (
+          </div>
+        );
+      }
+        return (
+          <div>
+            {lettersForUpMode}
+            {minElementOfLetters}
+
+            {lettersForUpMode.map((element, idx) => {
+              return (
+                <div
+                  css={css`
+                    position: absolute;
+                    padding-left: ${200 * idx}px;
+                  `}
+                >
+                  <img
+                    css={css`
+                      position: absolute;
+                      z-index: 1;
+                    `}
+                    src={`/static/${design}/item${lettersForUpMode.indexOf(
+                      element
+                    )}.png`}
+                  />
+                  <span css={textStyles}>{element}</span>
+                </div>
+              );
+            })}
             <div
               css={css`
                 position: absolute;
-                padding-left: ${200 * idx}px;
+                padding-top: 400px;
+                padding-left: 100px;
+              `}
+            >
+              <img src={`/static/upMode.png`} />
+            </div>
+
+            <div
+              css={css`
+                position: absolute;
+                padding-top: 600px;
               `}
             >
               <img
@@ -110,47 +168,67 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
                   position: absolute;
                   z-index: 1;
                 `}
-                src={`/static/${design}/item${numbersForDownMode.indexOf(
-                  element
-                )}.png`}
+                src={`/static/${design}/item5.png`}
               />
-              <span css={textStyles}>{element}</span>
+              <span css={textStyles}>{minElementOfNumbers}</span>
             </div>
-          );
-        })}
-        <div
-          css={css`
-            position: absolute;
-            padding-top: 400px;
-            padding-left: 600px;
-          `}
-        >
-          <img src={`/static/downMode.png`} />
-        </div>
-  
-        <div
-          css={css`
-            position: absolute;
-            padding-top: 600px;
-            padding-left: 700px;
-          `}
-        >
-          <img
+          </div>
+        );
+    }
+    if (gameMode === "desc") {
+      return (
+        <div>
+          {numbersForDownMode.map((element, idx) => {
+            return (
+              <div
+                css={css`
+                  position: absolute;
+                  padding-left: ${200 * idx}px;
+                `}
+              >
+                <img
+                  css={css`
+                    position: absolute;
+                    z-index: 1;
+                  `}
+                  src={`/static/${design}/item${numbersForDownMode.indexOf(
+                    element
+                  )}.png`}
+                />
+                <span css={textStyles}>{element}</span>
+              </div>
+            );
+          })}
+          <div
             css={css`
               position: absolute;
-              z-index: 1;
+              padding-top: 400px;
+              padding-left: 600px;
             `}
-            src={`/static/${design}/item5.png`}
-          />
-          <span css={textStyles}>{maxElementOfNumbers}</span>
+          >
+            <img src={`/static/downMode.png`} />
+          </div>
+
+          <div
+            css={css`
+              position: absolute;
+              padding-top: 600px;
+              padding-left: 700px;
+            `}
+          >
+            <img
+              css={css`
+                position: absolute;
+                z-index: 1;
+              `}
+              src={`/static/${design}/item5.png`}
+            />
+            <span css={textStyles}>{maxElementOfNumbers}</span>
+          </div>
         </div>
-      </div>
-      )
+      );
     }
-  }
+  };
 
-  return (
-    <>{gameView()}</>
-
-  );
+  return <>{gameView()}</>;
 };

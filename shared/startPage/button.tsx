@@ -19,6 +19,7 @@ export const Button = ({ active, onClick, children }) => {
         "line-height": "39px",
         color: "#423F45",
         cursor: "pointer",
+        height: "50px",
       })}
       onClick={onClick}
     >

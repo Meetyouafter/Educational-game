@@ -38,7 +38,7 @@ const getListStyle = (isDraggingOver) => ({
   overflow: "auto",
 });
 
-const Game = ({ gameMode, count, design }) => {
+const GameLogic = ({ gameMode, count, design }) => {
   const [items, setItems] = useState(getItems(count));
   const [finalItems, setFinalItems] = useState([]);
 
@@ -203,4 +203,4 @@ const Game = ({ gameMode, count, design }) => {
   );
 };
 
-export default Game;
+export default GameLogic;

@@ -11,6 +11,7 @@ const container = css({
   background: "#ffffff",
   "border-radius": "40px",
   alignItems: "center",
+  marginTop: "32px",
 });
 
 export const Container = styled.div`

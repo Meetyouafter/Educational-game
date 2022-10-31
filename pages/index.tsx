@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import { Container } from "../shared/startPage/container";
 import { Button } from "../shared/startPage/button";
 import { Title } from "../shared/startPage/title";
@@ -7,10 +6,9 @@ import { SliderInput } from "../shared/startPage/sliderInput";
 import { useState } from "react";
 import { WrapperForGame } from "../shared/gamePage/wrapperForGame";
 import { WrapperForStart } from "../shared/startPage/wrapperForStart";
-import { ContainerForItems } from "../shared/gamePage/containerForItems";
 import { GameElement } from "../shared/gamePage/gameElement";
-import { WinWindow } from "../shared/winWindow";
-import Game from "../shared/gamePage/game";
+import Game from "../shared/gamePage/gameLogic";
+import styled from "@emotion/styled";
 
 const Home = () => {
   const [countOfElementsForGame, setCountOfElementsForGame] = useState(2);
@@ -21,11 +19,9 @@ const Home = () => {
   const handleGameModeChange = (type: string) => () => {
     setGameMode(type);
   };
-
   const changeStatusGame = () => {
     setSettingOfGame(!settingOfGame);
   };
-
   const randomIntFromInterval = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
@@ -33,66 +29,74 @@ const Home = () => {
   const variantesOfDesign = ["candies", "flowers", "toys", "coins"];
   const design = variantesOfDesign[randomIntFromInterval(0, 3)];
 
+  const DivForFistTitle = styled.div`
+    display: flex;
+    margin-top: 41px;
+    margin-left: 183px;
+  `;
+  const DivForSecondTitle = styled.div`
+    margin-top: 70px;
+  `;
+  const DivForFistSlider = styled.div`
+    margin-top: 36px;
+    margin-left: 157px;
+    width: 355px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `;
+  const DivForSecondSlider = styled.div`
+    margin-top: 38px;
+    margin-left: 76px;
+    width: 519px;
+    display: flex;
+    justify-content: space-between;
+    align-item: center;
+  `;
+  const DivForButtons = styled.div`
+    display: flex;
+    margin-top: 81px;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 75px;
+    margin-right: 70px;
+  `;
+  const DivForSuccessButton = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 95px;
+  `;
+
+  const DivForGameElement = styled.div`
+    height: 320px;
+    position: relative;
+  `;
+
   const gameSettingPage = (
     <div>
       <WrapperForStart>
         <Container>
-          <div
-            css={css`
-              margin-top: 40px;
-              dsplay: flex;
-            `}
-          >
+          <DivForFistTitle>
             <Title>Кол-во предметов</Title>
-          </div>
-          <div
-            css={css`
-              margin-top: 38px;
-              width: 366px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            `}
-          >
+          </DivForFistTitle>
+          <DivForFistSlider>
             <SliderInput
               value={countOfElementsForGame}
               onChange={setCountOfElementsForGame}
               marks={[2, 3, 4, 5]}
             />
-          </div>
-          <div
-            css={css`
-              margin-top: 68px;
-            `}
-          >
+          </DivForFistSlider>
+          <DivForSecondTitle>
             <Title>Значения</Title>
-          </div>
-          <div
-            css={css`
-              margin-top: 40px;
-              width: 531px;
-              display: flex;
-              justify-content: space-between;
-              align-item: center;
-            `}
-          >
+          </DivForSecondTitle>
+          <DivForSecondSlider>
             <SliderInput
               value={typeOfElementsForGame}
               onChange={setTypeOfElementsForGame}
               marks={["A", 9, 19, 50, 99, 999]}
             />
-          </div>
-
-          <div
-            css={css`
-              display: flex;
-              margin-top: 81px;
-              flex-direction: row;
-              justify-content: space-between;
-              margin-left: 60px;
-              margin-right: 60px;
-            `}
-          >
+          </DivForSecondSlider>
+          <DivForButtons>
             <Button
               active={gameMode === "asc"}
               onClick={handleGameModeChange("asc")}
@@ -105,57 +109,34 @@ const Home = () => {
             >
               По убыванию
             </Button>
-          </div>
-
-          <div
-            css={css`
-              display: flex;
-              justify-content: center;
-              margin-top: 99px;
-            `}
-          >
+          </DivForButtons>
+          <DivForSuccessButton>
             <SuccessButton changeStatusGame={changeStatusGame}>
               Играть
-              </SuccessButton>
-          </div>
+            </SuccessButton>
+          </DivForSuccessButton>
         </Container>
       </WrapperForStart>
-
     </div>
   );
 
   const gamePage = (
     <div>
       <WrapperForGame design={design}>
-      <div
-      css={css`
-        height: 320px;
-        position:relative;
-      `}
-    >
+        <DivForGameElement>
           <GameElement
             count={countOfElementsForGame}
             mode={typeOfElementsForGame}
             design={design}
             gameMode={gameMode}
           />
-        </div>
-
+        </DivForGameElement>
         <Game
-            design={design}
-            count={countOfElementsForGame}
-            elementType={typeOfElementsForGame}
-            gameMode={gameMode}
+          design={design}
+          count={countOfElementsForGame}
+          elementType={typeOfElementsForGame}
+          gameMode={gameMode}
         />
-        <div
-      css={css`
-        display: flex;
-        width: 500px;
-      `}
-    >
-
-      </div>
-
       </WrapperForGame>
     </div>
   );

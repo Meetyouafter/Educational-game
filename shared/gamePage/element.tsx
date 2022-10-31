@@ -5,23 +5,24 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  const valuesForGameWithNumbers = (quantity, maxValue) => {
-    let result = [];
-    for (let i = 1; i <= quantity; i += 1) {
-      let t = randomIntFromInterval(1, maxValue);
-      result.push(t);
+  const valuesForGameWithNumbers = (count, mode) => {
+    let result = [] 
+    let rundomnumber;  
+    while (result.length <= count) {
+      rundomnumber = Math.floor(Math.random() * mode);
+      if (result.indexOf(rundomnumber) == -1) {
+        result.push(rundomnumber);        
+      }
     }
-    return result;
-  };
+    return result
+  }
 
   const numbersForUpMode = valuesForGameWithNumbers(mode, count);
-  numbersForUpMode.push(randomIntFromInterval(0, count));
   const minElementOfNumbers = Math.min(...numbersForUpMode);
   const indexOfMinElement = numbersForUpMode.indexOf(minElementOfNumbers);
   numbersForUpMode.splice(indexOfMinElement, 1);
 
   const numbersForDownMode = valuesForGameWithNumbers(mode, count);
-  numbersForDownMode.push(randomIntFromInterval(0, count));
   const maxElementOfNumbers = Math.max(...numbersForDownMode);
   const indexOfMaxElement = numbersForDownMode.indexOf(maxElementOfNumbers);
   numbersForDownMode.splice(indexOfMaxElement, 1);
@@ -139,7 +140,7 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
               position: absolute;
               z-index: 1;
             `}
-            src={`/static/${design}/item6.png`}
+            src={`/static/${design}/item5.png`}
           />
           <span css={textStyles}>{maxElementOfNumbers}</span>
         </div>

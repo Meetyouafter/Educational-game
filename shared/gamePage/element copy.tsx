@@ -48,7 +48,7 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
   lettersForUpMode.splice(indexOfMinLettersElement, 1);
 
   const lettersForDownMode = valuesForGameWithLetters(count);
-  const maxElementOfLetters = lettersForDownMode.sort()[count];
+  const maxElementOfLetters = lettersForDownMode.sort()[count - 1];
   const indexOfMaxLettersElement =
     lettersForDownMode.indexOf(maxElementOfLetters);
   lettersForDownMode.splice(indexOfMaxLettersElement, 1);
@@ -167,14 +167,12 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
                 `}
                 src={`/static/${design}/item5.png`}
               />
-              <span css={textStyles}>{minElementOfLetters}</span>
+              <span css={textStyles}>{minElementOfNumbers}</span>
             </div>
           </div>
         );
     }
     if (gameMode === "desc") {
-      if (mode !== "A") {
-
       return (
         <div>
           {numbersForDownMode.map((element, idx) => {
@@ -225,59 +223,7 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
             <span css={textStyles}>{maxElementOfNumbers}</span>
           </div>
         </div>
-      );} else {
-        return (
-          <div>
-            {lettersForDownMode.map((element, idx) => {
-              return (
-                <div
-                  css={css`
-                    position: absolute;
-                    padding-left: ${200 * idx}px;
-                  `}
-                >
-                  <img
-                    css={css`
-                      position: absolute;
-                      z-index: 1;
-                    `}
-                    src={`/static/${design}/item${lettersForDownMode.indexOf(
-                      element
-                    )}.png`}
-                  />
-                  <span css={textStyles}>{element}</span>
-                </div>
-              );
-            })}
-            <div
-              css={css`
-                position: absolute;
-                padding-top: 400px;
-                padding-left: 600px;
-              `}
-            >
-              <img src={`/static/downMode.png`} />
-            </div>
-  
-            <div
-              css={css`
-                position: absolute;
-                padding-top: 600px;
-                padding-left: 700px;
-              `}
-            >
-              <img
-                css={css`
-                  position: absolute;
-                  z-index: 1;
-                `}
-                src={`/static/${design}/item5.png`}
-              />
-              <span css={textStyles}>{maxElementOfLetters}</span>
-            </div>
-          </div>
-        )
-      }
+      );
     }
   };
 

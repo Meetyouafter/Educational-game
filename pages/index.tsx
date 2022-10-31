@@ -12,8 +12,8 @@ import { GameElement } from "../shared/gamePage/element";
 import { WinWindow } from "../shared/gamePage/winWindow";
 
 const Home = () => {
-  const [countOfElementsForGame, setCountOfElementsForGame] = useState("A");
-  const [typeOfElementsForGame, setTypeOfElementsForGame] = useState(2);
+  const [countOfElementsForGame, setCountOfElementsForGame] = useState(2);
+  const [typeOfElementsForGame, setTypeOfElementsForGame] = useState("A");
   const [gameMode, setGameMode] = useState("asc");
   const [settingOfGame, setSettingOfGame] = useState(true);
 
@@ -54,8 +54,8 @@ const Home = () => {
             `}
           >
             <SliderInput
-              value={typeOfElementsForGame}
-              onChange={setTypeOfElementsForGame}
+              value={countOfElementsForGame}
+              onChange={setCountOfElementsForGame}
               marks={[2, 3, 4, 5]}
             />
           </div>
@@ -76,8 +76,8 @@ const Home = () => {
             `}
           >
             <SliderInput
-              value={countOfElementsForGame}
-              onChange={setCountOfElementsForGame}
+              value={typeOfElementsForGame}
+              onChange={setTypeOfElementsForGame}
               marks={["A", 9, 19, 50, 99, 999]}
             />
           </div>
@@ -120,16 +120,6 @@ const Home = () => {
         </Container>
       </WrapperForStart>
 
-      <WinWindow>
-      <div
-            css={css`
-              padding-left: 300px;
-            `}
-          >
-          123456
-          </div>
-      </WinWindow>
-
     </div>
   );
 
@@ -149,7 +139,7 @@ const Home = () => {
             gameMode={gameMode}
           />
         </div>
-        <ContainerForItems design={design} />
+        <ContainerForItems design={design} count={countOfElementsForGame}/>
       </WrapperForGame>
     </div>
   );

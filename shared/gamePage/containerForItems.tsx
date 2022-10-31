@@ -1,59 +1,35 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
-export const ContainerForItems = ({design}) => {
+const ellipse = (
+  <div css={css`
+    width: 100px;
+    height: 100px;
+    background-image: url(/static/ellipse.png);
+    `}></div>
+)
+
+export const ContainerForItems = ({design, count}) => {
+  const need = 'r'.repeat(count+1) //for repeat ellipse
+  const arr = need.split('')
+
   return (
     <div css={css`
-    width: 886px;
-    height: 222px;
+    width: 890px;
+    height: 230px;
     background-image: url(/static/${design}/container.png);
     borderRadius: 50px;
     display: flex;
+    align-items: center;
+    justify-content: center;
     `}>
-          <div css={css`
-    width: 100px;
-    height: 100px;
-    background-color: blue;
-    margin-top: 100px;
-    margin-left: 100px;
-    `}></div>
-    <div css={css`
-    width: 100px;
-    height: 100px;
-    background-color: green;
-    margin-top: 100px;
-    margin-left: 30px;
-    `}></div>
-    <div css={css`
-    width: 100px;
-    height: 100px;
-    background-color: yellow;
-    margin-top: 100px;
-    margin-left: 40px;
-    `}></div>
-    <div css={css`
-    width: 100px;
-    height: 100px;
-    background-color: black;
-    margin-top: 100px;
-    margin-left: 30px;
-    `}></div>
-    <div css={css`
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    margin-top: 100px;
-    margin-left: 40px;
-    `}></div>
-    <div css={css`
-    width: 100px;
-    height: 100px;
-    background-color: white;
-    margin-top: 100px;
-    margin-left: 30px;
-    `}></div>
-      
-
+      {arr.map((element) => (
+        <div css={css`
+        width: 131px;
+        height: 131px;
+        background-image: url(/static/ellipse.png);
+        `}>{element}</div>
+      ))}
     </div>
     )
   }

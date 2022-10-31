@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { SuccessButton } from "../startPage/successButton";
+import { SuccessButton } from "./startPage/successButton";
 
 const winTextStyles = css({
   fontFamily: "Circe Rounded Alt ",

@@ -9,7 +9,8 @@ import { WrapperForGame } from "../shared/gamePage/wrapperForGame";
 import { WrapperForStart } from "../shared/startPage/wrapper";
 import { ContainerForItems } from "../shared/gamePage/containerForItems";
 import { GameElement } from "../shared/gamePage/element";
-import { WinWindow } from "../shared/gamePage/winWindow";
+import { WinWindow } from "../shared/winWindow";
+import Game from "../shared/gamePage/game";
 
 const Home = () => {
   const [countOfElementsForGame, setCountOfElementsForGame] = useState(2);
@@ -141,6 +142,7 @@ const Home = () => {
         </div>
         <ContainerForItems design={design} count={countOfElementsForGame}/>
       </WrapperForGame>
+      <Game />
     </div>
   );
 

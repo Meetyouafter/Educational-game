@@ -132,6 +132,7 @@ const Home = () => {
             count={countOfElementsForGame}
             mode={typeOfElementsForGame}
             design={design}
+            gameMode={gameMode}
           />
         </div>
         <ContainerForItems design={design} />

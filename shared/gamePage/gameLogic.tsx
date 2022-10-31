@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Item from "./Item";
-import EmptyItem from "./EmptyItem";
 import { css } from "@emotion/react";
 
 function getRandomInt(min, max) {

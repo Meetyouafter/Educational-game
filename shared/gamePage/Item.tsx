@@ -1,8 +1,4 @@
-/* eslint-disable react/no-unknown-property */
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/prop-types */
 import { css } from "@emotion/react";
-import styled from "@emotion/styled";
 
 const textStyles = css({
   fontFamily: "Calibri",
@@ -18,7 +14,7 @@ const textStyles = css({
   paddingTop: "70px",
 });
   
-const Item = ({ text = '', design, idx }) => {
+const Item = ({ text = '', }) => {
   return (
     <div
     css={css`

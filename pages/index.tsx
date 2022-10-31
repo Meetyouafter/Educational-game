@@ -8,6 +8,7 @@ import { WrapperForGame } from "../shared/gamePage/wrapperForGame";
 import { WrapperForStart } from "../shared/startPage/wrapperForStart";
 import Game from "../shared/gamePage/gameLogic";
 import styled from "@emotion/styled";
+import GameLogic from "../shared/gamePage/gameLogic";
 
 const Home = () => {
   const [countOfElementsForGame, setCountOfElementsForGame] = useState(2);
@@ -117,7 +118,7 @@ const Home = () => {
   const gamePage = (
     <div>
       <WrapperForGame design={design}>
-        <Game
+        <GameLogic
           design={design}
           count={countOfElementsForGame}
           elementType={typeOfElementsForGame}

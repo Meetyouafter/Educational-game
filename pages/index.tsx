@@ -6,7 +6,6 @@ import { SliderInput } from "../shared/startPage/sliderInput";
 import { useState } from "react";
 import { WrapperForGame } from "../shared/gamePage/wrapperForGame";
 import { WrapperForStart } from "../shared/startPage/wrapperForStart";
-import { GameElement } from "../shared/gamePage/gameElement";
 import Game from "../shared/gamePage/gameLogic";
 import styled from "@emotion/styled";
 
@@ -67,11 +66,6 @@ const Home = () => {
     margin-top: 95px;
   `;
 
-  const DivForGameElement = styled.div`
-    height: 320px;
-    position: relative;
-  `;
-
   const gameSettingPage = (
     <div>
       <WrapperForStart>
@@ -123,14 +117,6 @@ const Home = () => {
   const gamePage = (
     <div>
       <WrapperForGame design={design}>
-        <DivForGameElement>
-          <GameElement
-            count={countOfElementsForGame}
-            mode={typeOfElementsForGame}
-            design={design}
-            gameMode={gameMode}
-          />
-        </DivForGameElement>
         <Game
           design={design}
           count={countOfElementsForGame}

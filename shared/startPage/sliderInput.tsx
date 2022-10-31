@@ -46,7 +46,6 @@ const SliderInput = ({ value, onChange, marks }) => {
         height: 21,
         borderRadius: 10,
       }}
-
       handleStyle={{
         background: "#104987",
         border: "none",

@@ -8,7 +8,7 @@ import { useState } from "react";
 import { WrapperForGame } from "../shared/gamePage/wrapperForGame";
 import { WrapperForStart } from "../shared/startPage/wrapper";
 import { ContainerForItems } from "../shared/gamePage/containerForItems";
-import { GameElement } from "../shared/gamePage/number";
+import { GameElement } from "../shared/gamePage/element";
 
 const Home = () => {
   const [countOfElementsForGame, setCountOfElementsForGame] = useState("A");
@@ -122,7 +122,12 @@ const Home = () => {
   const gamePage = (
     <div>
       <WrapperForGame design={design}>
-        <div>
+      <div
+      css={css`
+        height: 500px;
+        position:relative;
+      `}
+    >
           <GameElement
             count={countOfElementsForGame}
             mode={typeOfElementsForGame}

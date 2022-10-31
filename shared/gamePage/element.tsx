@@ -15,10 +15,10 @@ export const GameElement = ({ count, mode, design }) => {
   };
 
   const arrayWithNumbers = valuesForGameWithNumbers(mode, count);
+  arrayWithNumbers.push(randomIntFromInterval(0, count));
   const minElementOfNumbers = Math.min(...arrayWithNumbers);
   const indexOfMinElement = arrayWithNumbers.indexOf(minElementOfNumbers);
   arrayWithNumbers.splice(indexOfMinElement, 1);
-  arrayWithNumbers.push(minElementOfNumbers);
 
   const textStyles = css({
 fontFamily: 'Calibri',
@@ -28,21 +28,47 @@ fontSize: "56px",
 lineHeight: "68px",
 letterSpacing: "2px",
 color: "#FFFFFF",
+position: "absolute",
+zIndex: "1",
+paddingLeft: "70px",
+paddingTop: "70px",
   })
 
   return (
     <div>
-        {arrayWithNumbers.map((element) => {
+        {arrayWithNumbers.map((element, idx) => {
             return (
-            <div>
-            <img src={`/static/${design}/item${arrayWithNumbers.indexOf(element)}.png`} 
+              <div
+              css={css`
+                position: absolute;
+                padding-left: ${200 * idx}px;
+              `}
+            >
+            <img css={css`
+                position: absolute;
+                z-index: 1;
+              `}
+              src={`/static/${design}/item${arrayWithNumbers.indexOf(element)}.png`} 
               />
             <span
             css={textStyles}>{element}</span>
           </div>
           )
         })}
+        <div
+              css={css`
+                position: absolute;
+                padding-top: 700px;
+              `}
+            >
+                    <img 
+              src={`/static/${design}/item5.png`} 
+              />
+            <span
+            css={textStyles}>{minElementOfNumbers}</span>
+          </div>
     </div>
+
     
   );
 };

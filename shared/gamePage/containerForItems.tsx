@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
-export const ContainerForItems = ({design, count}) => {
+export const ContainerForItems = ({design, count, key}) => {
   const need = 'r'.repeat(count+1) //for repeat ellipse
   const arr = need.split('')
 
@@ -20,7 +20,7 @@ export const ContainerForItems = ({design, count}) => {
         width: 131px;
         height: 131px;
         background-image: url(/static/ellipse.png);
-        `}>{element}</div>
+        `}>{element}{key}</div>
       ))}
     </div>
     )

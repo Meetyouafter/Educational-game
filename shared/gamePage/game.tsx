@@ -1,16 +1,9 @@
 
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Item from './Item'
 import EmptyItem from './EmptyItem'
 
-const gameModes = {
-  ASC_MODE: 'asc',
-  DESC_MODE: 'desc'
-}
-
-const gameMode = gameModes.ASC_MODE;
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -21,14 +14,18 @@ function getRandomInt(min, max) {
 // fake data generator
 const getItems = count =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
-    id: `item-${k}`,
+    id: `item${k}`,
+    //id: `item-${k}`,
     content: getRandomInt(0, 100),
   }));
+
+
+const grid = 8;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',
-  margin: `0`,
+  margin: `0 ${grid}px 0 0`,
   borderRadius: 100,
 
 
@@ -41,12 +38,17 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? 'lightblue' : 'lightgrey',
-  padding: 'auto',
+  padding: grid,
   overflow: 'auto',
 });
 
-const App = () => {
-  const [items, setItems] = useState(getItems(5));
+
+
+
+
+
+const Game = ({ gameMode, count, design }) => {
+  const [items, setItems] = useState(getItems(count));
   const [finalItems, setFinalItems] = useState([]);
 
   const onDragEnd = (result) => {
@@ -57,7 +59,7 @@ const App = () => {
     const itemToMove = items[result.source.index];
     const newItems = items.filter((item, idx) => idx !== result.source.index)
 
-    if (gameMode === gameModes.ASC_MODE) {
+    if (gameMode === 'asc') {
       const min = Math.min(...items.map(item => item.content))
       if (itemToMove.content <= min) {
         setItems(newItems)
@@ -65,7 +67,7 @@ const App = () => {
       }
     }
 
-    if (gameMode === gameModes.DESC_MODE) {
+    if (gameMode === 'desc') {
       const max = Math.max(...items.map(item => item.content))
       if (itemToMove.content >= max) {
         setItems(newItems)
@@ -96,7 +98,7 @@ const App = () => {
                       provided.draggableProps.style
                     )}
                   >
-                    <Item text={item.content} />
+                    <Item text={item.content} design={design} />
                   </div>
                 )}
               </Draggable>
@@ -112,7 +114,7 @@ const App = () => {
             style={getListStyle(snapshot.isDraggingOver)}
             {...provided.droppableProps}
           >
-            {gameMode === gameModes.ASC_MODE && (
+            {gameMode === 'asc' && (
               <>
                 {finalItems.map((item, index) => (
                   <Draggable key={item.id} draggableId={item.id} index={index} isDragDisabled>
@@ -131,13 +133,13 @@ const App = () => {
                     )}
                   </Draggable>
                 ))}
-                {items.map((item, index) => <EmptyItem key={item.content} />)}
+                {items.map((item) => <EmptyItem key={item.content} design={design} idx={item.id}/>)}
               </>
             )}
 
-            {gameMode === gameModes.DESC_MODE && (
+            {gameMode === 'desc' && (
               <>
-                {items.map((item, index) => <EmptyItem key={item.content} />)}
+                {items.map((item) => <EmptyItem key={item.content} />)}
                 {finalItems.map((item, index) => (
                   <Draggable key={item.id} draggableId={item.id} index={index} isDragDisabled>
                     {(provided, snapshot) => (
@@ -164,4 +166,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default Game;

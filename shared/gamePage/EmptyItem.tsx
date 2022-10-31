@@ -13,10 +13,9 @@ const container = css({
 boxShadow: "inset 0px 4px 25px rgba(0, 0, 0, 0.25)",
 })
   
-const EmptyItem = ({ text = '' }) => {
+const EmptyItem = () => {
   return (
     <div css={container}>
-      {text}
     </div>
   )
 }

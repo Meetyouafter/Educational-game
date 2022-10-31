@@ -141,7 +141,18 @@ const Home = () => {
           />
         </div>
         <ContainerForItems design={design} count={countOfElementsForGame}/>
-      <Game />
+        <div
+      css={css`
+        display: flex;
+        width: 500px;
+      `}
+    >
+      <Game 
+      count={countOfElementsForGame} 
+      elementType={typeOfElementsForGame}
+      gameMode={gameMode}
+      />
+      </div>
 
       </WrapperForGame>
     </div>

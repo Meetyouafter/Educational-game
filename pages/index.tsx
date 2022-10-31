@@ -141,8 +141,9 @@ const Home = () => {
           />
         </div>
         <ContainerForItems design={design} count={countOfElementsForGame}/>
-      </WrapperForGame>
       <Game />
+
+      </WrapperForGame>
     </div>
   );
 

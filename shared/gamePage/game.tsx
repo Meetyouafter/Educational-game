@@ -25,13 +25,10 @@ const getItems = count =>
     content: getRandomInt(0, 100),
   }));
 
-
-const grid = 8;
-
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',
-  margin: `0 ${grid}px 0 0`,
+  margin: `0`,
   borderRadius: 100,
 
 
@@ -44,7 +41,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? 'lightblue' : 'lightgrey',
-  padding: grid,
+  padding: 'auto',
   overflow: 'auto',
 });
 

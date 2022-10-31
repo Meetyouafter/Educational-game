@@ -139,7 +139,7 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
               position: absolute;
               z-index: 1;
             `}
-            src={`/static/${design}/item5.png`}
+            src={`/static/${design}/item6.png`}
           />
           <span css={textStyles}>{maxElementOfNumbers}</span>
         </div>

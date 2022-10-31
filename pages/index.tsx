@@ -9,6 +9,7 @@ import { WrapperForGame } from "../shared/gamePage/wrapperForGame";
 import { WrapperForStart } from "../shared/startPage/wrapper";
 import { ContainerForItems } from "../shared/gamePage/containerForItems";
 import { GameElement } from "../shared/gamePage/element";
+import { WinWindow } from "../shared/gamePage/winWindow";
 
 const Home = () => {
   const [countOfElementsForGame, setCountOfElementsForGame] = useState("A");
@@ -112,10 +113,23 @@ const Home = () => {
               margin-top: 99px;
             `}
           >
-            <SuccessButton changeStatusGame={changeStatusGame} />
+            <SuccessButton changeStatusGame={changeStatusGame}>
+              Играть
+              </SuccessButton>
           </div>
         </Container>
       </WrapperForStart>
+
+      <WinWindow>
+      <div
+            css={css`
+              padding-left: 300px;
+            `}
+          >
+          123456
+          </div>
+      </WinWindow>
+
     </div>
   );
 

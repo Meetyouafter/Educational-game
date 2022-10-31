@@ -16,13 +16,13 @@ const successButton = css({
   cursor: "pointer",
 });
 
-export const SuccessButton = ({ changeStatusGame }) => {
+export const SuccessButton = ({ changeStatusGame, children }) => {
   return (
     <button
       css={successButton}
       onClick={changeStatusGame}
     >
-      Играть
+      {children}
     </button>
   );
 };

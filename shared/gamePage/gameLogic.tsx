@@ -107,8 +107,8 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
   const NewEmptyItem = () => (
     <div
       css={css`
-        width: 131px;
-        height: 131px;
+        width: 401px;
+        height: 401px;
         background-image: url("/static/ellipse.png");
       `}
     />
@@ -116,7 +116,9 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
 
   return (
     <>
-    <DragDropContext onDragEnd={onDragEnd}>
+    <DragDropContext 
+    
+  onDragEnd={onDragEnd}>
       <Droppable droppableId="droppable-1" direction="horizontal">
         {(provided, snapshot) => (
           <div
@@ -125,7 +127,8 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
             style={getListStyle(snapshot.isDraggingOver)}
             {...provided.droppableProps}
             css={css`
-              margin-bottom: 350px; //between container and items
+              margin-bottom: 400px; //between container and items
+              margin-top: 0px;
               display: flex;
               justify-content: center;
               column-gap: 150px; // between elements

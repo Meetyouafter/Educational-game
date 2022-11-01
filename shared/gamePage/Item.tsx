@@ -1,36 +1,35 @@
-import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 
-const textStyles = css({
-  fontFamily: "Calibri",
-  fontStyle: "normal",
-  fontWeight: "400",
-  fontSize: "56px",
-  lineHeight: "68px",
-  letterSpacing: "2px",
-  color: "#FFFFFF",
-  position: "absolute",
-  zIndex: "1",
-  paddingLeft: "70px",
-  paddingTop: "70px",
-});
-  
-const Item = ({ text = '', theme, id}) => {
+const Text = styled.span`
+  font-family: Calibri;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 68px;
+  letter-spacing: 2px;
+  color: #ffffff;
+  position: absolute;
+  z-index: 1;
+  padding-left: 70px;
+  padding-top: 70px;
+`;
+
+const Container = styled.div`
+  position: absolute;
+`;
+
+const Image = styled.img`
+  position: absolute;
+  z-index: 1;
+`;
+
+const Item = ({ text = "", theme, id }) => {
   return (
-    <div
-    css={css`
-      position: absolute;
-    `}
-  >
-    <img
-      css={css`
-        position: absolute;
-        z-index: 1;
-      `}
-      src={`/static/${theme}/${id}`}
-    />
-    <span css={textStyles}>{text}</span>
-  </div>
-  )
-}
+    <Container>
+      <Image src={`/static/${theme}/${id}`} />
+      <Text>{text}</Text>
+    </Container>
+  );
+};
 
 export default Item;

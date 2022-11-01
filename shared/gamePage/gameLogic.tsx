@@ -148,13 +148,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
             </div>
           )}
         </Droppable>
-<img 
-css={css`
-margin-top: -40px;
-margin-left: 55px;
-margin-bottom: 0px;
-`}
-src="/static/upMode.png" />
+
         <div
           css={css`
             height: 320px;
@@ -165,7 +159,7 @@ src="/static/upMode.png" />
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: -40px;
+            margin-top: 0px;
           `}
         >
           <Droppable droppableId="droppable-2" direction="horizontal">
@@ -214,6 +208,14 @@ src="/static/upMode.png" />
                     {items.map((item) => (
                       <NewEmptyItem key={item.id} />
                     ))}
+                            <img
+          css={css`
+            position: absolute;
+            left: 53px;
+            top: 480px;
+          `}
+          src="/static/upMode.png"
+        />
                   </>
                 )}
 
@@ -250,6 +252,14 @@ src="/static/upMode.png" />
                         )}
                       </Draggable>
                     ))}
+                    <img
+          css={css`
+            position: absolute;
+            left: 600px;
+            top: 480px;
+          `}
+          src="/static/downMode.png"
+        />
                   </>
                 )}
               </div>

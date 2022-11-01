@@ -2,6 +2,7 @@ import { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Item from "./Item";
 import { css } from "@emotion/react";
+import { WinModal } from "../winModal";
 
 const gameModes = {
   ASC_MODE: 'asc',
@@ -65,6 +66,7 @@ const getRandomItems = (count, elementType) => {
 const GameLogic = ({ gameMode, count, theme, elementType }) => {
   const [items, setItems] = useState(getRandomItems(count, elementType));
   const [finalItems, setFinalItems] = useState([]);
+  const [modalActive, setModalActive] = useState(true)
 
   const onDragEnd = (result) => {
     if (!result.destination) {
@@ -102,6 +104,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
   );
 
   return (
+    <>
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="droppable-1" direction="horizontal">
         {(provided, snapshot) => (
@@ -223,6 +226,11 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
         )}
       </Droppable>
     </DragDropContext>
+    <button onClick={() => setModalActive(true)}>
+    Open{modalActive}</button>
+    {modalActive}
+      <WinModal active={modalActive} setActive={setModalActive}/>
+</>
   );
 };
 

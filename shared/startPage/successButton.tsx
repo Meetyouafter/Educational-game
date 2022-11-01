@@ -15,6 +15,6 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-export const SuccessButton = ({ changeStatusGame, children }) => {
+export const SuccessButton = ({ changeStatusGame, children, onClick }) => {
   return <Button onClick={changeStatusGame}>{children}</Button>;
 };

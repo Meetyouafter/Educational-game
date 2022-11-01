@@ -1,37 +1,17 @@
-# Emotion Example
+<a href="https://codeclimate.com/github/Meetyouafter/Educational-game/maintainability"><img src="https://api.codeclimate.com/v1/badges/ce346511c1592a9275df/maintainability" /></a>
 
-Extract and inline critical css with
-[@emotion/css](https://github.com/emotion-js/emotion/tree/master/packages/css),
-[@emotion/server](https://github.com/emotion-js/emotion/tree/master/packages/server),
-[@emotion/react](https://github.com/emotion-js/emotion/tree/master/packages/react),
-and [@emotion/styled](https://github.com/emotion-js/emotion/tree/master/packages/styled).
 
-## Preview
+Пердставляю Вам игру для детей!
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+В проекте реализована арифметическая игра, направленная на обучение детей алфавиту и математике, а также развитию логики с применением TypeScript, Next JS, styled component.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-emotion)
+Суть данной игры заключается в сопоставлении букв и чесел в необходимом порядке, посредством перемещения элементов.
 
-## Deploy your own
+В игре реализовано два режима сортировки элементов (по возрастанию и по убыванию), а также возможность выбрать тип данных (буквы или числа) и уровень сложности (несколько различных интервалов для чисел).
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+Для локального запуска игры:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-emotion&project-name=with-emotion&repository-name=with-emotion)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-emotion-swc with-emotion-swc-app
-```
-
-```bash
-yarn create next-app --example with-emotion-swc with-emotion-swc-app
-```
-
-```bash
-pnpm create next-app --example with-emotion-swc with-emotion-swc-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Установите Node.js последней версии;
+Склонируйте репозиторий проекта;
+После первого клонирования репозитория используйте команду npm ci;
+Для установки пакета из операционной системы используйте команду npm link.

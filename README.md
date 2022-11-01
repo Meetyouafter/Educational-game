@@ -1,9 +1,10 @@
 <a href="https://codeclimate.com/github/Meetyouafter/Educational-game/maintainability"><img src="https://api.codeclimate.com/v1/badges/ce346511c1592a9275df/maintainability" /></a>
 
 
-Пердставляю Вам игру для детей!
+Представляю Вам арифметическую игру для детей!
 
-В проекте реализована арифметическая игра, направленная на обучение детей алфавиту и математике, а также развитию логики с применением TypeScript, Next JS, styled component.
+В проекте реализована игра, направленная на обучение детей алфавиту и математике, а также развитию логики.
+Используемые технологии: TypeScript, Next JS, styled component, а также библиотеки emotion и react-beautiful-dnd.
 
 Суть данной игры заключается в сопоставлении букв и чесел в необходимом порядке, посредством перемещения элементов.
 

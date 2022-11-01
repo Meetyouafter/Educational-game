@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Item from "../gamePage/Item";
 
 const Button = styled.button`
   background: #38df7a;
@@ -10,16 +9,12 @@ const Button = styled.button`
   font-weight: 400;
   font-size: 32px;
   line-height: 44px;
-  height: 67px;
-  width: 263px;
+  height: 60px;
+  width: 260px;
   color: #ffffff;
   cursor: pointer;
-  margin-top: 72px;
-  margin-left: 4px;
 `;
 
-const handleClick = () => location.reload()
-
-export const FinallButton = ({children}) => {
-  return <Button onClick={handleClick}>{children}</Button>;
+export const MajorButton = ({ children, onClick }) => {
+  return <Button onClick={onClick}>{children}</Button>;
 };

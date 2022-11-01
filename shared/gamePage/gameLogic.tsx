@@ -65,9 +65,6 @@ const getRandomItems = (count, elementType) => {
 const GameLogic = ({ gameMode, count, theme, elementType }) => {
   const [items, setItems] = useState(getRandomItems(count, elementType));
   const [finalItems, setFinalItems] = useState([]);
-  const [modalActive, setModalActive] = useState(false)
-
-  const returnToStartGame = () => console.log(location.reload());
 
   const onDragEnd = (result) => {
     if (!result.destination) {
@@ -76,16 +73,6 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
 
     const itemToMove = items[result.source.index];
     const newItems = items.filter((item, idx) => idx !== result.source.index);
-
-    /*
-    const itemToMove = items[result.source.index];
-    const newItems = items.map((item, idx) => {
-      if (idx === result.source.index) {
-        item.content = "olo";
-      }
-      return item;
-    });
-    */
 
     if (gameMode === gameModes.ASC_MODE) {
       const min = Math.min(...items.map((item) => item.content));

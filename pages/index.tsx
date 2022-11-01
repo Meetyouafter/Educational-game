@@ -1,12 +1,11 @@
 import { Container } from "../shared/startPage/container";
 import { Button } from "../shared/startPage/button";
 import { Title } from "../shared/startPage/title";
-import { SuccessButton } from "../shared/startPage/successButton";
+import { MajorButton } from "../shared/startPage/majorButton";
 import { SliderInput } from "../shared/startPage/sliderInput";
 import { useState } from "react";
 import { WrapperForGame } from "../shared/gamePage/wrapperForGame";
 import { WrapperForStart } from "../shared/startPage/wrapperForStart";
-import Game from "../shared/gamePage/gameLogic";
 import styled from "@emotion/styled";
 import GameLogic from "../shared/gamePage/gameLogic";
 
@@ -111,9 +110,9 @@ const Home = () => {
             </Button>
           </GameModeControls>
           <StartGameButton>
-            <SuccessButton changeStatusGame={changeStatusGame}>
+            <MajorButton onClick={changeStatusGame}>
               Играть
-            </SuccessButton>
+            </MajorButton>
           </StartGameButton>
         </Container>
       </WrapperForStart>

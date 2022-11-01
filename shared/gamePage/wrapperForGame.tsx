@@ -8,4 +8,3 @@ background-image: ${({theme}) =>
 borderRadius: 50px;
 `
 
-

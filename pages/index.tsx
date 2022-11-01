@@ -74,7 +74,6 @@ const Home = () => {
   const gameSettingPage = (
     <div>
       <WrapperForStart>
-        <ContainerWrapper>
         <Container>
           <BlockForFirstTitle>
             <Title>Кол-во предметов</Title>
@@ -116,7 +115,6 @@ const Home = () => {
             </MajorButton>
           </StartGameButton>
         </Container>
-        </ContainerWrapper>
       </WrapperForStart>
     </div>
   );

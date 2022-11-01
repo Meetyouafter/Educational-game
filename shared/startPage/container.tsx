@@ -17,17 +17,3 @@ export const Container = styled.div`
   margin-top: 31px;
   margin-right: 5px;
 `;
-
-export const ContainerWrapper = styled.div`
-  background: linear-gradient(
-    to left bottom,
-    rgba(127, 117, 240, 1),
-    rgba(16, 31, 50, 1)
-  );
-  width: 200px;
-  height: 200px;
-  border-radius: 40px;
-  position: absolute;
-  left: 500px;
-  top: 500px;
-`;

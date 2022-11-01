@@ -7,7 +7,7 @@ const SliderInput = ({ value, onChange, marks }) => {
     fontWeight: 700,
     fontSize: 24,
     color: "#4F4B61",
-    transform: "translate(-80%, -45px)",
+    transform: "translate(-50%, -40px)",
   };
 
   const sliderMarks = marks.reduce((acc, cur, idx) => {

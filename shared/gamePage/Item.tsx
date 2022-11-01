@@ -21,15 +21,15 @@ const Container = styled.div`
 const Image = styled.img`
   position: absolute;
   z-index: 1;
+  width: ${props => props.width ? props.width : "initial"};
 `;
 
-const Item = ({ text = "", theme, id }) => {
+const Item = ({ text = "", theme, id, width }) => {
   return (
     <Container>
-      <Image src={`/static/${theme}/${id}`} />
+      <Image src={`/static/${theme}/${id}`} width={width} />
       <Text>{text}</Text>
     </Container>
   );
 };
-
 export default Item;

@@ -5,20 +5,23 @@ import { css } from "@emotion/react";
 import { WinModal } from "../winModal";
 
 const gameModes = {
-  ASC_MODE: 'asc',
-  DESC_MODE: 'desc'
+  ASC_MODE: "asc",
+  DESC_MODE: "desc",
 };
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   userSelect: "none",
   margin: 5, //distanse between elements
   borderRadius: 100,
+
+  width: 131,
+  height: 131,
   ...draggableStyle,
 });
 
 const getListStyle = (isDraggingOver) => ({
-  paddingTop: 150, //to up and down
-  //overflow: "auto",
+  height: 222,
+  width: "calc(100% - 94px)",
 });
 
 const getRandomNumber = (min, max) => {
@@ -26,7 +29,7 @@ const getRandomNumber = (min, max) => {
 };
 
 const getRandomItems = (count, elementType) => {
-  if (elementType !== 'A') {
+  if (elementType !== "A") {
     const valuesForGameWithNumbers = (count, elementType) => {
       const result = [];
       let randomNumber;
@@ -94,143 +97,165 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
   const NewEmptyItem = () => (
     <div
       css={css`
-        width: 401px;
-        height: 401px;
+        width: 131px;
+        height: 131px;
         background-image: url("/static/ellipse.png");
+        background-repeat: no-repeat;
       `}
     />
   );
 
   return (
     <>
-    <DragDropContext 
-    
-  onDragEnd={onDragEnd}>
-      <Droppable droppableId="droppable-1" direction="horizontal">
-        {(provided, snapshot) => (
-          <div
-            className="list"
-            ref={provided.innerRef}
-            style={getListStyle(snapshot.isDraggingOver)}
-            {...provided.droppableProps}
-            css={css`
-              margin-bottom: 400px; //between container and items
-              margin-top: 0px;
-              display: flex;
-              justify-content: center;
-              column-gap: 150px; // between elements
-            `}
-          >
-            {items.map((item, index) => (
-              <Draggable
-                key={item.id}
-                draggableId={item.id}
-                index={index}
-                shouldRespectForcePress={false}
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="droppable-1" direction="horizontal">
+          {(provided, snapshot) => (
+            <div
+              className="list"
+              ref={provided.innerRef}
+              style={getListStyle(snapshot.isDraggingOver)}
+              {...provided.droppableProps}
+              css={css`
+                margin-top: 150px;
+                display: flex;
+                justify-content: center;
+                column-gap: 200px; // between elements
+              `}
+            >
+              {items.map((item, index) => (
+                <Draggable
+                  key={item.id}
+                  draggableId={item.id}
+                  index={index}
+                  shouldRespectForcePress={false}
+                >
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      style={getItemStyle(
+                        snapshot.isDragging,
+                        provided.draggableProps.style
+                      )}
+                    >
+                      <Item
+                        key={index}
+                        id={item.id}
+                        text={item.content}
+                        theme={theme}
+                      />
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+            </div>
+          )}
+        </Droppable>
+
+        <div
+          css={css`
+            height: 222px;
+            width: calc(100% - 94px);
+            background-image: url("/static/${theme}/container.png");
+            background-repeat: round;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          `}
+        >
+          <Droppable droppableId="droppable-2" direction="horizontal">
+            {(provided, snapshot) => (
+              <div
+                className="list"
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                css={css`
+                  display: inline-flex;
+                  column-gap: 4px;
+                  align-items: center;
+                  justify-content: center;
+                `}
               >
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    style={getItemStyle(
-                      snapshot.isDragging,
-                      provided.draggableProps.style
-                    )}
-                  >
-                    <Item key={index} id={item.id} text={item.content} theme={theme} />
-                  </div>
+                {gameMode === gameModes.ASC_MODE && (
+                  <>
+                    {finalItems.map((item, index) => (
+                      <Draggable
+                        key={item.id}
+                        draggableId={item.id}
+                        index={index}
+                        isDragDisabled
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            style={getItemStyle(
+                              snapshot.isDragging,
+                              provided.draggableProps.style
+                            )}
+                          >
+                            <Item
+                              key={index}
+                              id={item.id}
+                              text={item.content}
+                              theme={theme}
+                              width={"131px"}
+                            />
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                    {items.map((item) => (
+                      <NewEmptyItem key={item.id} />
+                    ))}
+                  </>
                 )}
-              </Draggable>
-            ))}
-          </div>
-        )}
-      </Droppable>
 
-      <Droppable droppableId="droppable-2" direction="horizontal">
-        {(provided, snapshot) => (
-          <div
-            className="list"
-            ref={provided.innerRef}
-            style={getListStyle(snapshot.isDraggingOver)}
-            {...provided.droppableProps}
-            css={css`
-              height: 130px;
-              background-image: url("/static/${theme}/container.png");
-              background-repeat: no-repeat;
-              border-radius: 50px;
-              display: flex;
-              column-gap: 50px;
-              align-items: center;
-              justify-content: center;
-            `}
-          >
-            {gameMode === gameModes.ASC_MODE && (
-              <>
-                {finalItems.map((item, index) => (
-                  <Draggable
-                    key={item.id}
-                    draggableId={item.id}
-                    index={index}
-                    isDragDisabled
-                  >
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        style={getItemStyle(
-                          snapshot.isDragging,
-                          provided.draggableProps.style
-                        )}
+                {gameMode === gameModes.DESC_MODE && (
+                  <>
+                    {items.map((item) => (
+                      <NewEmptyItem key={item.id} />
+                    ))}
+                    {finalItems.map((item, index) => (
+                      <Draggable
+                        key={item.id}
+                        draggableId={item.id}
+                        index={index}
+                        isDragDisabled
                       >
-                        <Item key={index} id={item.id} text={item.content} theme={theme}/>
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {items.map((item) => (
-                  <NewEmptyItem key={item.id} />
-                ))}
-              </>
-            )}
-
-            {gameMode === gameModes.DESC_MODE && (
-              <>
-                {items.map((item) => (
-                  <NewEmptyItem key={item.id} />
-                ))}
-                {finalItems.map((item, index) => (
-                  <Draggable
-                    key={item.id}
-                    draggableId={item.id}
-                    index={index}
-                    isDragDisabled
-                  >
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        style={getItemStyle(
-                          snapshot.isDragging,
-                          provided.draggableProps.style
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            style={getItemStyle(
+                              snapshot.isDragging,
+                              provided.draggableProps.style
+                            )}
+                          >
+                            <Item
+                              key={index}
+                              id={item.id}
+                              text={item.content}
+                              theme={theme}
+                              width={"131px"}
+                            />
+                          </div>
                         )}
-                      >
-                        <Item key={index} id={item.id} text={item.content} theme={theme} />
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-              </>
+                      </Draggable>
+                    ))}
+                  </>
+                )}
+              </div>
             )}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
-    {finalItems.length === count ? <WinModal /> : '<></>'}
-    
-</>
+          </Droppable>
+        </div>
+      </DragDropContext>
+      {finalItems.length === count + 1 && <WinModal />}
+    </>
   );
 };
 

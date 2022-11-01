@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 
 export const WrapperForGame = styled.div`
-width: 980px;
-height: 810px;
-background-image: ${({theme}) => 
-  `url(${(`/static/${theme}/background.png`)})`};
-borderRadius: 50px;
-`
-
-
+  height: 100vh;
+  background-image: ${({ theme }) =>
+    `url(${`/static/${theme}/background.png`})`};
+  background-repeat: round;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;

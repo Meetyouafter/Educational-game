@@ -33,8 +33,9 @@ const Text = styled.span`
 `;
 
 const Modal = styled.div`
-  width: 980px;
+  width: 100%;
   height: 810px;
+  z-index: 10;
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   top: 0;

@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 
 export const WrapperForStart = styled.div`
-  width: 980px;
-  height: 810px;
+  height: 100vh;
   background-image: url("/static/startPageBackground.png");
   margin: 0;
   display: flex;

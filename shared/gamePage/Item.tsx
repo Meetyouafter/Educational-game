@@ -14,7 +14,7 @@ const textStyles = css({
   paddingTop: "70px",
 });
   
-const Item = ({ text = '', }) => {
+const Item = ({ text = '', theme, id}) => {
   return (
     <div
     css={css`
@@ -26,7 +26,7 @@ const Item = ({ text = '', }) => {
         position: absolute;
         z-index: 1;
       `}
-      src={`/static/candies/item1.png`}
+      src={`/static/${theme}/${id}`}
     />
     <span css={textStyles}>{text}</span>
   </div>

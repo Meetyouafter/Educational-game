@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export const GameElement = ({ count, mode, design, gameMode }) => {
+export const GameElement = ({ count, mode, theme, gameMode }) => {
   const randomIntFromInterval = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
@@ -85,7 +85,7 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
                       position: absolute;
                       z-index: 1;
                     `}
-                    src={`/static/${design}/item${numbersForUpMode.indexOf(
+                    src={`/static/${theme}/item${numbersForUpMode.indexOf(
                       element
                     )}.png`}
                   />
@@ -114,7 +114,7 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
                   position: absolute;
                   z-index: 1;
                 `}
-                src={`/static/${design}/item5.png`}
+                src={`/static/${theme}/item5.png`}
               />
               <span css={textStyles}>{minElementOfNumbers}</span>
             </div>
@@ -136,7 +136,7 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
                       position: absolute;
                       z-index: 1;
                     `}
-                    src={`/static/${design}/item${lettersForUpMode.indexOf(
+                    src={`/static/${theme}/item${lettersForUpMode.indexOf(
                       element
                     )}.png`}
                   />
@@ -165,7 +165,7 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
                   position: absolute;
                   z-index: 1;
                 `}
-                src={`/static/${design}/item5.png`}
+                src={`/static/${theme}/item5.png`}
               />
               <span css={textStyles}>{minElementOfLetters}</span>
             </div>
@@ -190,7 +190,7 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
                     position: absolute;
                     z-index: 1;
                   `}
-                  src={`/static/${design}/item${numbersForDownMode.indexOf(
+                  src={`/static/${theme}/item${numbersForDownMode.indexOf(
                     element
                   )}.png`}
                 />
@@ -220,7 +220,7 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
                 position: absolute;
                 z-index: 1;
               `}
-              src={`/static/${design}/item5.png`}
+              src={`/static/${theme}/item5.png`}
             />
             <span css={textStyles}>{maxElementOfNumbers}</span>
           </div>
@@ -241,7 +241,7 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
                       position: absolute;
                       z-index: 1;
                     `}
-                    src={`/static/${design}/item${lettersForDownMode.indexOf(
+                    src={`/static/${theme}/item${lettersForDownMode.indexOf(
                       element
                     )}.png`}
                   />
@@ -271,7 +271,7 @@ export const GameElement = ({ count, mode, design, gameMode }) => {
                   position: absolute;
                   z-index: 1;
                 `}
-                src={`/static/${design}/item5.png`}
+                src={`/static/${theme}/item5.png`}
               />
               <span css={textStyles}>{maxElementOfLetters}</span>
             </div>

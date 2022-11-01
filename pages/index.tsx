@@ -26,18 +26,23 @@ const Home = () => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  const variantesOfDesign = ["candies", "flowers", "toys", "coins"];
-  const design = variantesOfDesign[randomIntFromInterval(0, 3)];
+  const gameModes = {
+    ASC_MODE: "asc",
+    DESC_MODE: "desc",
+  };
 
-  const DivForFistTitle = styled.div`
+  const themes = ["candies", "flowers", "toys", "coins"];
+  const theme = themes[randomIntFromInterval(0, 3)];
+
+  const BlockForFirstTitle = styled.div`
     display: flex;
     margin-top: 41px;
     margin-left: 183px;
   `;
-  const DivForSecondTitle = styled.div`
+  const BlockForSecondTitle = styled.div`
     margin-top: 70px;
   `;
-  const DivForFistSlider = styled.div`
+  const BlockForFistSlider = styled.div`
     margin-top: 36px;
     margin-left: 157px;
     width: 355px;
@@ -45,7 +50,7 @@ const Home = () => {
     justify-content: center;
     align-items: center;
   `;
-  const DivForSecondSlider = styled.div`
+  const BlockForSecondSlider = styled.div`
     margin-top: 38px;
     margin-left: 76px;
     width: 519px;
@@ -53,7 +58,7 @@ const Home = () => {
     justify-content: space-between;
     align-item: center;
   `;
-  const DivForButtons = styled.div`
+  const GameModeControls = styled.div`
     display: flex;
     margin-top: 81px;
     flex-direction: row;
@@ -61,7 +66,7 @@ const Home = () => {
     margin-left: 75px;
     margin-right: 70px;
   `;
-  const DivForSuccessButton = styled.div`
+  const StartGameButton = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 95px;
@@ -71,45 +76,45 @@ const Home = () => {
     <div>
       <WrapperForStart>
         <Container>
-          <DivForFistTitle>
+          <BlockForFirstTitle>
             <Title>Кол-во предметов</Title>
-          </DivForFistTitle>
-          <DivForFistSlider>
+          </BlockForFirstTitle>
+          <BlockForFistSlider>
             <SliderInput
               value={countOfElementsForGame}
               onChange={setCountOfElementsForGame}
               marks={[2, 3, 4, 5]}
             />
-          </DivForFistSlider>
-          <DivForSecondTitle>
+          </BlockForFistSlider>
+          <BlockForSecondTitle>
             <Title>Значения</Title>
-          </DivForSecondTitle>
-          <DivForSecondSlider>
+          </BlockForSecondTitle>
+          <BlockForSecondSlider>
             <SliderInput
               value={typeOfElementsForGame}
               onChange={setTypeOfElementsForGame}
               marks={["A", 9, 19, 50, 99, 999]}
             />
-          </DivForSecondSlider>
-          <DivForButtons>
+          </BlockForSecondSlider>
+          <GameModeControls>
             <Button
-              active={gameMode === "asc"}
-              onClick={handleGameModeChange("asc")}
+              active={gameMode === gameModes.ASC_MODE}
+              onClick={handleGameModeChange(gameModes.ASC_MODE)}
             >
               По возрастанию
             </Button>
             <Button
-              active={gameMode === "desc"}
-              onClick={handleGameModeChange("desc")}
+              active={gameMode === gameModes.DESC_MODE}
+              onClick={handleGameModeChange(gameModes.DESC_MODE)}
             >
               По убыванию
             </Button>
-          </DivForButtons>
-          <DivForSuccessButton>
+          </GameModeControls>
+          <StartGameButton>
             <SuccessButton changeStatusGame={changeStatusGame}>
               Играть
             </SuccessButton>
-          </DivForSuccessButton>
+          </StartGameButton>
         </Container>
       </WrapperForStart>
     </div>
@@ -117,9 +122,9 @@ const Home = () => {
 
   const gamePage = (
     <div>
-      <WrapperForGame design={design}>
+      <WrapperForGame theme={theme}>
         <GameLogic
-          design={design}
+          theme={theme}
           count={countOfElementsForGame}
           elementType={typeOfElementsForGame}
           gameMode={gameMode}

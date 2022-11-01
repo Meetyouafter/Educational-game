@@ -3,6 +3,11 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Item from "./Item";
 import { css } from "@emotion/react";
 
+const gameModes = {
+  ASC_MODE: 'asc',
+  DESC_MODE: 'desc'
+};
+
 const getItemStyle = (isDragging, draggableStyle) => ({
   userSelect: "none",
   margin: 5, //distanse between elements
@@ -57,7 +62,7 @@ const getRandomItems = (count, elementType) => {
 };
 
 
-const GameLogic = ({ gameMode, count, design, elementType }) => {
+const GameLogic = ({ gameMode, count, theme, elementType }) => {
   const [items, setItems] = useState(getRandomItems(count, elementType));
   const [finalItems, setFinalItems] = useState([]);
 
@@ -69,18 +74,16 @@ const GameLogic = ({ gameMode, count, design, elementType }) => {
     const itemToMove = items[result.source.index];
     const newItems = items.filter((item, idx) => idx !== result.source.index);
 
-    if (gameMode === "asc") {
+    if (gameMode === gameModes.ASC_MODE) {
       const min = Math.min(...items.map((item) => item.content));
-      setFinalItems([...finalItems, min]);
       if (itemToMove.content <= min) {
         setItems(newItems);
         setFinalItems([...finalItems, itemToMove]);
       }
     }
 
-    if (gameMode === "desc") {
+    if (gameMode === gameModes.DESC_MODE) {
       const max = Math.max(...items.map((item) => item.content));
-      setFinalItems([...finalItems, max]);
       if (itemToMove.content >= max) {
         setItems(newItems);
         setFinalItems([itemToMove, ...finalItems]);
@@ -100,7 +103,6 @@ const GameLogic = ({ gameMode, count, design, elementType }) => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      console.log(design)
       <Droppable droppableId="droppable-1" direction="horizontal">
         {(provided, snapshot) => (
           <div
@@ -131,7 +133,7 @@ const GameLogic = ({ gameMode, count, design, elementType }) => {
                       provided.draggableProps.style
                     )}
                   >
-                    <Item text={item.content} design={design} />
+                    <Item key={index} id={item.id} text={item.content} theme={theme} />
                   </div>
                 )}
               </Draggable>
@@ -149,7 +151,7 @@ const GameLogic = ({ gameMode, count, design, elementType }) => {
             {...provided.droppableProps}
             css={css`
               height: 230px;
-              background-image: url("/static/${design}/container.png");
+              background-image: url("/static/${theme}/container.png");
               background-repeat: no-repeat;
               border-radius: 50px;
               display: flex;
@@ -158,7 +160,7 @@ const GameLogic = ({ gameMode, count, design, elementType }) => {
               justify-content: center;
             `}
           >
-            {gameMode === "asc" && (
+            {gameMode === gameModes.ASC_MODE && (
               <>
                 {finalItems.map((item, index) => (
                   <Draggable
@@ -177,7 +179,7 @@ const GameLogic = ({ gameMode, count, design, elementType }) => {
                           provided.draggableProps.style
                         )}
                       >
-                        <Item key={item.content} text={item.content} />
+                        <Item key={index} id={item.id} text={item.content} theme={theme}/>
                       </div>
                     )}
                   </Draggable>
@@ -188,7 +190,7 @@ const GameLogic = ({ gameMode, count, design, elementType }) => {
               </>
             )}
 
-            {gameMode === "desc" && (
+            {gameMode === gameModes.DESC_MODE && (
               <>
                 {items.map((item) => (
                   <NewEmptyItem key={item.id} />
@@ -210,7 +212,7 @@ const GameLogic = ({ gameMode, count, design, elementType }) => {
                           provided.draggableProps.style
                         )}
                       >
-                        <Item key={item.content} text={item.content} />
+                        <Item key={index} id={item.id} text={item.content} theme={theme} />
                       </div>
                     )}
                   </Draggable>

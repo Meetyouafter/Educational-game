@@ -70,7 +70,7 @@ export const WinModal = ({ active, setActive }) => {
             position: absolute;
             width: 100px;
             top: 50px;
-            left: 500px;
+            left: 200px;
           `}
           src="/static/starForWinWindow.png"
         />

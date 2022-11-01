@@ -1,44 +1,64 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Item from "./Item";
 import { css } from "@emotion/react";
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// fake data generator
-const getItems = (count) =>
-  Array.from({ length: count }, (v, k) => k).map((k) => ({
-    id: `item${k}`,
-    //id: `item-${k}`,
-    content: getRandomInt(0, 100),
-  }));
-
-  const grid = 8;
-
 const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
   userSelect: "none",
-  margin: `0 ${grid}px 0 0`,
+  margin: 5, //distanse between elements
   borderRadius: 100,
-
-  // change background colour if dragging
-  background: isDragging ? "lightgreen" : "grey",
-
-  // styles we need to apply on draggables
   ...draggableStyle,
 });
 
 const getListStyle = (isDraggingOver) => ({
-  padding: grid,
+  paddingTop: 100, //to up and down
   overflow: "auto",
 });
 
-const GameLogic = ({ gameMode, count, design }) => {
-  const [items, setItems] = useState(getItems(count));
+const getRandomNumber = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+const getRandomItems = (count, elementType) => {
+  if (elementType !== 'A') {
+    const valuesForGameWithNumbers = (count, elementType) => {
+      const result = [];
+      let randomNumber;
+      while (result.length <= count) {
+        randomNumber = Math.floor(Math.random() * elementType);
+        if (result.indexOf(randomNumber) == -1) {
+          result.push(randomNumber);
+        }
+      }
+      return result;
+    };
+    return valuesForGameWithNumbers(count, elementType).map((count, idx) => ({
+      id: `item${idx}.png`,
+      content: count,
+    }));
+  } else {
+    const valuesForGameWithLetters = (count) => {
+      const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+      const result = [];
+      let randomLetter;
+      while (result.length <= count) {
+        randomLetter = alphabet[getRandomNumber(0, 32)];
+        if (result.indexOf(randomLetter) == -1) {
+          result.push(randomLetter);
+        }
+      }
+      return result;
+    };
+    return valuesForGameWithLetters(count).map((count, idx) => ({
+      id: `item${idx}.png`,
+      content: `${count}`,
+    }));
+  }
+};
+
+
+const GameLogic = ({ gameMode, count, design, elementType }) => {
+  const [items, setItems] = useState(getRandomItems(count, elementType));
   const [finalItems, setFinalItems] = useState([]);
 
   const onDragEnd = (result) => {
@@ -51,6 +71,7 @@ const GameLogic = ({ gameMode, count, design }) => {
 
     if (gameMode === "asc") {
       const min = Math.min(...items.map((item) => item.content));
+      setFinalItems([...finalItems, min]);
       if (itemToMove.content <= min) {
         setItems(newItems);
         setFinalItems([...finalItems, itemToMove]);
@@ -59,6 +80,7 @@ const GameLogic = ({ gameMode, count, design }) => {
 
     if (gameMode === "desc") {
       const max = Math.max(...items.map((item) => item.content));
+      setFinalItems([...finalItems, max]);
       if (itemToMove.content >= max) {
         setItems(newItems);
         setFinalItems([itemToMove, ...finalItems]);
@@ -78,6 +100,7 @@ const GameLogic = ({ gameMode, count, design }) => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
+      console.log(design)
       <Droppable droppableId="droppable-1" direction="horizontal">
         {(provided, snapshot) => (
           <div
@@ -116,7 +139,6 @@ const GameLogic = ({ gameMode, count, design }) => {
           </div>
         )}
       </Droppable>
-
 
       <Droppable droppableId="droppable-2" direction="horizontal">
         {(provided, snapshot) => (
@@ -166,7 +188,7 @@ const GameLogic = ({ gameMode, count, design }) => {
               </>
             )}
 
-{gameMode === "desc" && (
+            {gameMode === "desc" && (
               <>
                 {items.map((item) => (
                   <NewEmptyItem key={item.id} />

@@ -17,8 +17,8 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 });
 
 const getListStyle = (isDraggingOver) => ({
-  paddingTop: 100, //to up and down
-  overflow: "auto",
+  paddingTop: 150, //to up and down
+  //overflow: "auto",
 });
 
 const getRandomNumber = (min, max) => {
@@ -62,11 +62,12 @@ const getRandomItems = (count, elementType) => {
   }
 };
 
-
 const GameLogic = ({ gameMode, count, theme, elementType }) => {
   const [items, setItems] = useState(getRandomItems(count, elementType));
   const [finalItems, setFinalItems] = useState([]);
-  const [modalActive, setModalActive] = useState(true)
+  const [modalActive, setModalActive] = useState(false)
+
+  const returnToStartGame = () => console.log(location.reload());
 
   const onDragEnd = (result) => {
     if (!result.destination) {
@@ -75,6 +76,16 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
 
     const itemToMove = items[result.source.index];
     const newItems = items.filter((item, idx) => idx !== result.source.index);
+
+    /*
+    const itemToMove = items[result.source.index];
+    const newItems = items.map((item, idx) => {
+      if (idx === result.source.index) {
+        item.content = "olo";
+      }
+      return item;
+    });
+    */
 
     if (gameMode === gameModes.ASC_MODE) {
       const min = Math.min(...items.map((item) => item.content));
@@ -114,9 +125,10 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
             style={getListStyle(snapshot.isDraggingOver)}
             {...provided.droppableProps}
             css={css`
-              margin-bottom: 200px;
+              margin-bottom: 350px; //between container and items
               display: flex;
-              column-gap: 200px;
+              justify-content: center;
+              column-gap: 150px; // between elements
             `}
           >
             {items.map((item, index) => (
@@ -153,12 +165,12 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
             style={getListStyle(snapshot.isDraggingOver)}
             {...provided.droppableProps}
             css={css`
-              height: 230px;
+              height: 130px;
               background-image: url("/static/${theme}/container.png");
               background-repeat: no-repeat;
               border-radius: 50px;
               display: flex;
-              column-gap: 100px;
+              column-gap: 50px;
               align-items: center;
               justify-content: center;
             `}
@@ -226,10 +238,8 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
         )}
       </Droppable>
     </DragDropContext>
-    <button onClick={() => setModalActive(true)}>
-    Open{modalActive}</button>
-    {modalActive}
-      <WinModal active={modalActive} setActive={setModalActive}/>
+    {finalItems.length === count ? <WinModal /> : '<></>'}
+    
 </>
   );
 };

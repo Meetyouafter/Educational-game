@@ -35,7 +35,7 @@ const getRandomItems = (count, elementType) => {
     const valuesForGameWithNumbers = (count, elementType) => {
       const result = [];
       let randomNumber;
-      while (result.length <= count) {
+      while (result.length <= count + 1) {
         randomNumber = Math.floor(Math.random() * elementType);
         if (result.indexOf(randomNumber) == -1) {
           result.push(randomNumber);
@@ -52,7 +52,7 @@ const getRandomItems = (count, elementType) => {
       const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
       const result = [];
       let randomLetter;
-      while (result.length <= count) {
+      while (result.length <= count + 1) {
         randomLetter = alphabet[getRandomNumber(0, 32)];
         if (result.indexOf(randomLetter) == -1) {
           result.push(randomLetter);
@@ -68,8 +68,31 @@ const getRandomItems = (count, elementType) => {
 };
 
 const GameLogic = ({ gameMode, count, theme, elementType }) => {
-  const [items, setItems] = useState(getRandomItems(count, elementType));
-  const [finalItems, setFinalItems] = useState([]);
+
+
+
+  const arrayWithNumbers = getRandomItems(count, elementType);
+  const arrayWithNumbersContext = arrayWithNumbers.map((item, idx) => item.content)
+  const minElementOfNumbers = Math.min(...arrayWithNumbersContext);
+  const maxElementOfNumbers = Math.max(...arrayWithNumbersContext);
+  const indexOfMinElement = arrayWithNumbersContext.indexOf(minElementOfNumbers);
+  const indexOfMaxElement = arrayWithNumbersContext.indexOf(maxElementOfNumbers);
+  const randomItems = gameMode === 'asc' ? arrayWithNumbers.splice(indexOfMinElement, 1) : arrayWithNumbers.splice(indexOfMaxElement, 1)
+//  arrayWithNumbers.splice(indexOfMinElement, 1);
+  //arrayWithNumbers.push(minElementOfNumbers);
+  console.log(arrayWithNumbers)
+  console.log(arrayWithNumbersContext)
+  console.log(minElementOfNumbers)
+  console.log(maxElementOfNumbers)
+  console.log(indexOfMinElement)
+  console.log(indexOfMaxElement)
+
+
+  const [items, setItems] = useState(randomItems);
+  const [finalItems, setFinalItems] = useState(gameMode === 'asc' ? [minElementOfNumbers] : [maxElementOfNumbers]);
+  console.log(items)
+  console.log(finalItems)
+ 
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;

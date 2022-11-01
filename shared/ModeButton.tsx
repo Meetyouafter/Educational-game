@@ -4,7 +4,7 @@ export const Button = ({ active, onClick, children }) => {
   const activeColor = "#FFD748";
   const notActiveColor = "rgba(255, 215, 72, 0.56)";
 
-  const Button = styled.button`
+  const ModeButton = styled.button`
     background-color: ${active ? activeColor : notActiveColor};
     border-radius: 20px;
     font-family: Calibri;
@@ -17,5 +17,5 @@ export const Button = ({ active, onClick, children }) => {
     height: 50px;
   `;
 
-  return <Button onClick={onClick}>{children}</Button>;
+  return <ModeButton onClick={onClick}>{children}</ModeButton>;
 };

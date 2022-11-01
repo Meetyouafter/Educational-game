@@ -21,10 +21,10 @@ const Container = styled.div`
 const Image = styled.img`
   position: absolute;
   z-index: 1;
-  width: ${props => props.width ? props.width : "initial"};
+  width: ${(props) => (props.width ? props.width : "initial")};
 `;
 
-const Item = ({ text = "", theme, id, width }) => {
+const GameItem = ({ text = "", theme, id, width }) => {
   return (
     <Container>
       <Image src={`/static/${theme}/${id}`} width={width} />
@@ -32,4 +32,4 @@ const Item = ({ text = "", theme, id, width }) => {
     </Container>
   );
 };
-export default Item;
+export default GameItem;

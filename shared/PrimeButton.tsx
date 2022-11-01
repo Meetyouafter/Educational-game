@@ -15,6 +15,6 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-export const MajorButton = ({ children, onClick }) => {
+export const PrimeButton = ({ children, onClick }) => {
   return <Button onClick={onClick}>{children}</Button>;
 };

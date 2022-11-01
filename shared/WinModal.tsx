@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { MajorButton } from "./startPage/majorButton";
+import { PrimeButton } from "./PrimeButton";
 
 const WinText = styled.span`
   font-family: Circe Rounded Alt;
@@ -101,7 +101,7 @@ export const WinModal = () => {
         <FourthStar src="/static/starForWinWindow.png" />
         <WinText>Победа!</WinText>
         <Text>Молодец! Ты успешно справился с заданием!</Text>
-        <MajorButton onClick={handleClick}>Заново</MajorButton>
+        <PrimeButton onClick={handleClick}>Заново</PrimeButton>
       </Container>
     </Modal>
   );

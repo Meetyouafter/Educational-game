@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import Item from "./Item";
+import GameItem from "./GameItem";
 import { css } from "@emotion/react";
-import { WinModal } from "../winModal";
+import { WinModal } from "./WinModal";
 
 const gameModes = {
   ASC_MODE: "asc",
@@ -135,11 +136,12 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
                         provided.draggableProps.style
                       )}
                     >
-                      <Item
+                      <GameItem
                         key={index}
                         id={item.id}
                         text={item.content}
                         theme={theme}
+                        width={''}
                       />
                     </div>
                   )}
@@ -194,7 +196,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
                               provided.draggableProps.style
                             )}
                           >
-                            <Item
+                            <GameItem
                               key={index}
                               id={item.id}
                               text={item.content}
@@ -208,14 +210,14 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
                     {items.map((item) => (
                       <NewEmptyItem key={item.id} />
                     ))}
-                            <img
-          css={css`
-            position: absolute;
-            left: 53px;
-            top: 480px;
-          `}
-          src="/static/upMode.png"
-        />
+                    <img
+                      css={css`
+                        position: absolute;
+                        left: 53px;
+                        top: 480px;
+                      `}
+                      src="/static/upMode.png"
+                    />
                   </>
                 )}
 
@@ -241,7 +243,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
                               provided.draggableProps.style
                             )}
                           >
-                            <Item
+                            <GameItem
                               key={index}
                               id={item.id}
                               text={item.content}
@@ -253,13 +255,13 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
                       </Draggable>
                     ))}
                     <img
-          css={css`
-            position: absolute;
-            left: 600px;
-            top: 480px;
-          `}
-          src="/static/downMode.png"
-        />
+                      css={css`
+                        position: absolute;
+                        left: 600px;
+                        top: 480px;
+                      `}
+                      src="/static/downMode.png"
+                    />
                   </>
                 )}
               </div>

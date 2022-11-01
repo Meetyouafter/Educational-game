@@ -1,13 +1,95 @@
-import { Container, ContainerWrapper } from "../shared/startPage/container";
-import { Button } from "../shared/startPage/button";
-import { Title } from "../shared/startPage/title";
-import { MajorButton } from "../shared/startPage/majorButton";
-import { SliderInput } from "../shared/startPage/sliderInput";
+import { Button } from "../shared/ModeButton";
+import { PrimeButton } from "../shared/PrimeButton";
+import { SliderInput } from "../shared/SliderInput";
 import { useState } from "react";
-import { WrapperForGame } from "../shared/gamePage/wrapperForGame";
-import { WrapperForStart } from "../shared/startPage/wrapperForStart";
 import styled from "@emotion/styled";
-import GameLogic from "../shared/gamePage/gameLogic";
+import GameLogic from "../shared/Game";
+
+export const WrapperForGame = styled.div`
+  width: 980px;
+  height: 810px;
+  background-image: ${({ theme }) =>
+    `url(${`/static/${theme}/background.png`})`};
+  borderradius: 50px;
+`;
+
+export const WrapperForStart = styled.div`
+  width: 980px;
+  height: 810px;
+  background-image: url("/static/startPageBackground.png");
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Title = styled.div`
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 33px;
+  line-height: 45px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #423f45;
+  justify-content: center;
+`;
+
+export const Container = styled.div`
+  box-sizing: border-box;
+  width: 700px;
+  height: 660px;
+  border: 20px solid;
+  border-image: linear-gradient(
+    to left bottom,
+    rgba(127, 117, 240, 1),
+    rgba(16, 31, 50, 1)
+  );
+  border-image-slice: 1;
+  background: #ffffff;
+  border-radius: 40px;
+  align-items: center;
+  margin-top: 31px;
+  margin-right: 5px;
+`;
+const BlockForFirstTitle = styled.div`
+  display: flex;
+  margin-top: 41px;
+  margin-left: 183px;
+`;
+const BlockForSecondTitle = styled.div`
+  margin-top: 70px;
+`;
+const BlockForFistSlider = styled.div`
+  margin-top: 36px;
+  margin-left: 157px;
+  width: 355px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const BlockForSecondSlider = styled.div`
+  margin-top: 38px;
+  margin-left: 76px;
+  width: 519px;
+  display: flex;
+  justify-content: space-between;
+  align-item: center;
+`;
+const GameModeControls = styled.div`
+  display: flex;
+  margin-top: 81px;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 75px;
+  margin-right: 70px;
+`;
+const StartGameButton = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 95px;
+`;
 
 const Home = () => {
   const [countOfElementsForGame, setCountOfElementsForGame] = useState(2);
@@ -32,44 +114,6 @@ const Home = () => {
 
   const themes = ["candies", "flowers", "toys", "coins"];
   const theme = themes[randomIntFromInterval(0, 3)];
-
-  const BlockForFirstTitle = styled.div`
-    display: flex;
-    margin-top: 41px;
-    margin-left: 183px;
-  `;
-  const BlockForSecondTitle = styled.div`
-    margin-top: 70px;
-  `;
-  const BlockForFistSlider = styled.div`
-    margin-top: 36px;
-    margin-left: 157px;
-    width: 355px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  `;
-  const BlockForSecondSlider = styled.div`
-    margin-top: 38px;
-    margin-left: 76px;
-    width: 519px;
-    display: flex;
-    justify-content: space-between;
-    align-item: center;
-  `;
-  const GameModeControls = styled.div`
-    display: flex;
-    margin-top: 81px;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-left: 75px;
-    margin-right: 70px;
-  `;
-  const StartGameButton = styled.div`
-    display: flex;
-    justify-content: center;
-    margin-top: 95px;
-  `;
 
   const gameSettingPage = (
     <div>
@@ -110,9 +154,7 @@ const Home = () => {
             </Button>
           </GameModeControls>
           <StartGameButton>
-            <MajorButton onClick={changeStatusGame}>
-              Играть
-            </MajorButton>
+            <PrimeButton onClick={changeStatusGame}>Играть</PrimeButton>
           </StartGameButton>
         </Container>
       </WrapperForStart>

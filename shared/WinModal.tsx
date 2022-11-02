@@ -54,7 +54,13 @@ const Container = styled.div`
   width: 660px;
   height: 520px;
   border: 20px solid #7f75f0;
-  border-image: linear-gradient(to left bottom #101f32, #7f75f0, #101f32);
+  border-image: linear-gradient(
+    to left bottom,
+    rgba(103, 223, 137, 1),
+    rgba(255, 255, 255, 0.8),
+    rgba(170, 146, 210, 0.7),
+    rgba(141, 103, 223, 0)
+  );
   border-image-slice: 1;
   background: #ffffff;
   border-radius: 40px;

@@ -12,7 +12,7 @@ const gameModes = {
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   userSelect: "none",
-  margin: 5, //distanse between elements
+ // margin: 5, //distanse between elements
   borderRadius: 100,
   marginTop: 0,
 

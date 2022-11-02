@@ -32,12 +32,12 @@ const getRandomNumber = (min, max) => {
 
 const getRandomItems = (count, elementType) => {
   if (elementType !== "A") {
-    const valuesForGameWithNumbers = (count, elementType) => {
+    const valuesForGameWithNumbers = (elementCount, elementTypes) => {
       const result = [];
       let randomNumber;
-      while (result.length <= count + 1) {
-        randomNumber = Math.floor(Math.random() * elementType);
-        if (result.indexOf(randomNumber) == -1) {
+      while (result.length <= elementCount) {
+        randomNumber = Math.floor(Math.random() * elementTypes);
+        if (result.indexOf(randomNumber) === -1) {
           result.push(randomNumber);
         }
       }
@@ -72,23 +72,35 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
 
 
   const arrayWithNumbers = getRandomItems(count, elementType);
-  const arrayWithNumbersContext = arrayWithNumbers.map((item, idx) => item.content)
-  const minElementOfNumbers = Math.min(...arrayWithNumbersContext);
-  const maxElementOfNumbers = Math.max(...arrayWithNumbersContext);
-  const indexOfMinElement = arrayWithNumbersContext.indexOf(minElementOfNumbers);
-  const indexOfMaxElement = arrayWithNumbersContext.indexOf(maxElementOfNumbers);
-  const randomItems = gameMode === 'asc' ? arrayWithNumbers.splice(indexOfMinElement, 1) : arrayWithNumbers.splice(indexOfMaxElement, 1)
+  const arrayWithNumbersContent = arrayWithNumbers.map((item, idx) => item.content)
+  const minElementOfNumbers = Math.min(...arrayWithNumbersContent);
+  const maxElementOfNumbers = Math.max(...arrayWithNumbersContent);
+  const indexOfMinElement = arrayWithNumbersContent.indexOf(minElementOfNumbers);
+  const indexOfMaxElement = arrayWithNumbersContent.indexOf(maxElementOfNumbers);
+  //const randomItems = gameMode === 'asc' ? arrayWithNumbers.splice(indexOfMinElement, 1) : arrayWithNumbers.splice(indexOfMaxElement, 1)
+  const randomItems = arrayWithNumbers.splice(indexOfMinElement, 1)
 //  arrayWithNumbers.splice(indexOfMinElement, 1);
   //arrayWithNumbers.push(minElementOfNumbers);
+  console.log(count)
+  console.log(elementType)
   console.log(arrayWithNumbers)
-  console.log(arrayWithNumbersContext)
+  /*
+  console.log(arrayWithNumbers[0])
+  console.log(arrayWithNumbers[1])
+  console.log(arrayWithNumbers[2])
+  console.log(arrayWithNumbers[3])
+  console.log(arrayWithNumbers[4])
+  console.log(arrayWithNumbers[5])
+  console.log(arrayWithNumbers[6])
+  console.log(arrayWithNumbersContent)
   console.log(minElementOfNumbers)
-  console.log(maxElementOfNumbers)
+  //console.log(maxElementOfNumbers)
   console.log(indexOfMinElement)
-  console.log(indexOfMaxElement)
+  //console.log(indexOfMaxElement)
+  console.log(randomItems, 'randomItems')
 
-
-  const [items, setItems] = useState(randomItems);
+*/
+  const [items, setItems] = useState(gameMode === 'asc' ? arrayWithNumbers.splice(indexOfMinElement, 1) : arrayWithNumbers.splice(indexOfMaxElement, 1));
   const [finalItems, setFinalItems] = useState(gameMode === 'asc' ? [minElementOfNumbers] : [maxElementOfNumbers]);
   console.log(items)
   console.log(finalItems)

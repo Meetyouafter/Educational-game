@@ -26,50 +26,85 @@ const getListStyle = (isDraggingOver) => ({
   width: "calc(100% - 94px)",
 });
 
+const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+
 const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+const valuesForGameWithNumbers = (count, elementType) => {
+  const result = [];
+
+  while (result.length <= count) {
+    const randomNumber = Math.floor(Math.random() * elementType);
+
+    if (!result.includes(randomNumber)) {
+      result.push(randomNumber);
+    }
+  }
+
+  return result;
+};
+
+const valuesForGameWithLetters = (count) => {
+  const result = [];
+
+  while (result.length <= count) {
+    const randomLetter = alphabet[getRandomNumber(0, 32)];
+
+    if (!result.includes(randomLetter)) {
+      result.push(randomLetter);
+    }
+  }
+
+  return result;
+};
+
 const getRandomItems = (count, elementType) => {
   if (elementType !== "A") {
-    const valuesForGameWithNumbers = (count, elementType) => {
-      const result = [];
-      let randomNumber;
-      while (result.length <= count) {
-        randomNumber = Math.floor(Math.random() * elementType);
-        if (result.indexOf(randomNumber) == -1) {
-          result.push(randomNumber);
-        }
-      }
-      return result;
-    };
     return valuesForGameWithNumbers(count, elementType).map((count, idx) => ({
       id: `item${idx}.png`,
       content: count,
     }));
   } else {
-    const valuesForGameWithLetters = (count) => {
-      const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-      const result = [];
-      let randomLetter;
-      while (result.length <= count) {
-        randomLetter = alphabet[getRandomNumber(0, 32)];
-        if (result.indexOf(randomLetter) == -1) {
-          result.push(randomLetter);
-        }
-      }
-      return result;
-    };
     return valuesForGameWithLetters(count).map((count, idx) => ({
       id: `item${idx}.png`,
-      content: `${count}`,
+      content: count,
     }));
   }
 };
 
 const GameLogic = ({ gameMode, count, theme, elementType }) => {
-  const [items, setItems] = useState(getRandomItems(count, elementType));
-  const [finalItems, setFinalItems] = useState([]);
+  const arrayWithNumbers = getRandomItems(count, elementType);
+  const arrayWithNumbersContent = arrayWithNumbers.map((item) => item.content);
+
+  const minElement = Math.min(...arrayWithNumbersContent);
+  const maxElement = Math.max(...arrayWithNumbersContent);
+  const indexOfMinElement = arrayWithNumbersContent.indexOf(minElement);
+  const indexOfMaxElement = arrayWithNumbersContent.indexOf(maxElement);
+  const randomItems = arrayWithNumbers.slice();
+
+  const itemsForASC = (arrayWithNumbers) => {
+    arrayWithNumbers.splice(indexOfMinElement, 1);
+    return arrayWithNumbers;
+  };
+
+  const itemsForDESC = (arrayWithNumbers) => {
+    arrayWithNumbers.splice(indexOfMaxElement, 1);
+    return arrayWithNumbers;
+  };
+
+  const [items, setItems] = useState(
+    gameMode === "asc"
+      ? itemsForASC(arrayWithNumbers)
+      : itemsForDESC(arrayWithNumbers)
+  );
+  const [finalItems, setFinalItems] = useState(
+    gameMode === "asc"
+      ? randomItems.splice(indexOfMinElement, 1)
+      : randomItems.splice(indexOfMaxElement, 1)
+  );
+
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;
@@ -141,7 +176,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
                         id={item.id}
                         text={item.content}
                         theme={theme}
-                        width={''}
+                        width={""}
                       />
                     </div>
                   )}

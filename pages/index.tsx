@@ -3,7 +3,7 @@ import { PrimeButton } from "../shared/PrimeButton";
 import { SliderInput } from "../shared/SliderInput";
 import { useState } from "react";
 import styled from "@emotion/styled";
-import GameLogic from "../shared/Game";
+import Game from "../shared/Game";
 
 export const WrapperForGame = styled.div`
   width: 980px;
@@ -164,7 +164,7 @@ const Home = () => {
   const gamePage = (
     <div>
       <WrapperForGame theme={theme}>
-        <GameLogic
+        <Game
           theme={theme}
           count={countOfElementsForGame}
           elementType={typeOfElementsForGame}

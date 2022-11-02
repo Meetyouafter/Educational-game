@@ -8,14 +8,18 @@ const Text = styled.span`
   line-height: 68px;
   letter-spacing: 2px;
   color: #ffffff;
+  -webkit-text-stroke: 3px #242546;
   position: absolute;
   z-index: 1;
-  padding-left: 70px;
-  padding-top: 70px;
 `;
 
 const Container = styled.div`
-  position: absolute;
+  margin-top: 60px;
+  position: relative;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  display: flex;
 `;
 
 const Image = styled.img`

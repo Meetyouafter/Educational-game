@@ -162,7 +162,6 @@ const Home = () => {
   );
 
   const gamePage = (
-    <div>
       <WrapperForGame theme={theme}>
         <Game
           theme={theme}
@@ -171,7 +170,6 @@ const Home = () => {
           gameMode={gameMode}
         />
       </WrapperForGame>
-    </div>
   );
 
   return settingOfGame ? gameSettingPage : gamePage;

@@ -1,6 +1,7 @@
 <a href="https://codeclimate.com/github/Meetyouafter/Educational-game/maintainability"><img src="https://api.codeclimate.com/v1/badges/ce346511c1592a9275df/maintainability" /></a>
 
 <h1>Арифметическая игра для детей</h1>
+Посмотреть игру: https://arithmetic-game.vercel.app/
 
 <h2>В данном проекте реализована игра, направленная на обучение детей алфавиту и математике, а также развитию логики.</h2>
 Используемые технологии: <b>TypeScript, Next JS, styled component, а также библиотеки emotion и react-beautiful-dnd.</b>

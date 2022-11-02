@@ -43,6 +43,8 @@ const Modal = styled.div`
   align-items: center;
   justify-content: center;
   transition: 0.5s;
+  position: absolute;
+  z-index: 1;
 `;
 
 const Container = styled.div`

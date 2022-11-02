@@ -26,85 +26,85 @@ const getListStyle = (isDraggingOver) => ({
   width: "calc(100% - 94px)",
 });
 
+const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+
 const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+const valuesForGameWithNumbers = (count, elementType) => {
+  const result = [];
+
+  while (result.length <= count) {
+    const randomNumber = Math.floor(Math.random() * elementType);
+
+    if (!result.includes(randomNumber)) {
+      result.push(randomNumber);
+    }
+  }
+
+  return result;
+};
+
+const valuesForGameWithLetters = (count) => {
+  const result = [];
+
+  while (result.length <= count) {
+    const randomLetter = alphabet[getRandomNumber(0, 32)];
+
+    if (!result.includes(randomLetter)) {
+      result.push(randomLetter);
+    }
+  }
+
+  return result;
+};
+
 const getRandomItems = (count, elementType) => {
   if (elementType !== "A") {
-    const valuesForGameWithNumbers = (elementCount, elementTypes) => {
-      const result = [];
-      let randomNumber;
-      while (result.length <= elementCount) {
-        randomNumber = Math.floor(Math.random() * elementTypes);
-        if (result.indexOf(randomNumber) === -1) {
-          result.push(randomNumber);
-        }
-      }
-      return result;
-    };
     return valuesForGameWithNumbers(count, elementType).map((count, idx) => ({
       id: `item${idx}.png`,
       content: count,
     }));
   } else {
-    const valuesForGameWithLetters = (count) => {
-      const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-      const result = [];
-      let randomLetter;
-      while (result.length <= count + 1) {
-        randomLetter = alphabet[getRandomNumber(0, 32)];
-        if (result.indexOf(randomLetter) == -1) {
-          result.push(randomLetter);
-        }
-      }
-      return result;
-    };
     return valuesForGameWithLetters(count).map((count, idx) => ({
       id: `item${idx}.png`,
-      content: `${count}`,
+      content: count,
     }));
   }
 };
 
 const GameLogic = ({ gameMode, count, theme, elementType }) => {
-
-
-
   const arrayWithNumbers = getRandomItems(count, elementType);
-  const arrayWithNumbersContent = arrayWithNumbers.map((item, idx) => item.content)
-  const minElementOfNumbers = Math.min(...arrayWithNumbersContent);
-  const maxElementOfNumbers = Math.max(...arrayWithNumbersContent);
-  const indexOfMinElement = arrayWithNumbersContent.indexOf(minElementOfNumbers);
-  const indexOfMaxElement = arrayWithNumbersContent.indexOf(maxElementOfNumbers);
-  //const randomItems = gameMode === 'asc' ? arrayWithNumbers.splice(indexOfMinElement, 1) : arrayWithNumbers.splice(indexOfMaxElement, 1)
-  const randomItems = arrayWithNumbers.splice(indexOfMinElement, 1)
-//  arrayWithNumbers.splice(indexOfMinElement, 1);
-  //arrayWithNumbers.push(minElementOfNumbers);
-  console.log(count)
-  console.log(elementType)
-  console.log(arrayWithNumbers)
-  /*
-  console.log(arrayWithNumbers[0])
-  console.log(arrayWithNumbers[1])
-  console.log(arrayWithNumbers[2])
-  console.log(arrayWithNumbers[3])
-  console.log(arrayWithNumbers[4])
-  console.log(arrayWithNumbers[5])
-  console.log(arrayWithNumbers[6])
-  console.log(arrayWithNumbersContent)
-  console.log(minElementOfNumbers)
-  //console.log(maxElementOfNumbers)
-  console.log(indexOfMinElement)
-  //console.log(indexOfMaxElement)
-  console.log(randomItems, 'randomItems')
+  const arrayWithNumbersContent = arrayWithNumbers.map((item) => item.content);
 
-*/
-  const [items, setItems] = useState(gameMode === 'asc' ? arrayWithNumbers.splice(indexOfMinElement, 1) : arrayWithNumbers.splice(indexOfMaxElement, 1));
-  const [finalItems, setFinalItems] = useState(gameMode === 'asc' ? [minElementOfNumbers] : [maxElementOfNumbers]);
-  console.log(items)
-  console.log(finalItems)
- 
+  const minElement = Math.min(...arrayWithNumbersContent);
+  const maxElement = Math.max(...arrayWithNumbersContent);
+  const indexOfMinElement = arrayWithNumbersContent.indexOf(minElement);
+  const indexOfMaxElement = arrayWithNumbersContent.indexOf(maxElement);
+  const randomItems = arrayWithNumbers.slice();
+
+  const itemsForASC = (arrayWithNumbers) => {
+    arrayWithNumbers.splice(indexOfMinElement, 1);
+    return arrayWithNumbers;
+  };
+
+  const itemsForDESC = (arrayWithNumbers) => {
+    arrayWithNumbers.splice(indexOfMaxElement, 1);
+    return arrayWithNumbers;
+  };
+
+  const [items, setItems] = useState(
+    gameMode === "asc"
+      ? itemsForASC(arrayWithNumbers)
+      : itemsForDESC(arrayWithNumbers)
+  );
+  const [finalItems, setFinalItems] = useState(
+    gameMode === "asc"
+      ? randomItems.splice(indexOfMinElement, 1)
+      : randomItems.splice(indexOfMaxElement, 1)
+  );
+
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;
@@ -176,7 +176,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
                         id={item.id}
                         text={item.content}
                         theme={theme}
-                        width={''}
+                        width={""}
                       />
                     </div>
                   )}

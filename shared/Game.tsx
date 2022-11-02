@@ -23,7 +23,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
 const getListStyle = (isDraggingOver) => ({
   height: 300,
-  width: "calc(100% - 94px)",
+  width: "calc(100% - 194px)",
 });
 
 const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
@@ -149,6 +149,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
               {...provided.droppableProps}
               css={css`
                 padding-top: 220px;
+                padding-left: 100px;
                 display: flex;
                 justify-content: center;
                 column-gap: 200px; // between elements
@@ -275,7 +276,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
                             {...provided.dragHandleProps}
                             style={getItemStyle(
                               snapshot.isDragging,
-                              provided.draggableProps.style
+                              provided.draggableProps.style,                              
                             )}
                           >
                             <GameItem

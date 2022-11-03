@@ -7,8 +7,8 @@ const Text = styled.span`
   font-size: 68px;
   line-height: 68px;
   letter-spacing: 2px;
-  color: #242546;
-  -webkit-text-stroke: 2px white;
+  color: #ffffff;
+  -webkit-text-stroke: 5px #242546;
   position: absolute;
   z-index: 1;
 `;

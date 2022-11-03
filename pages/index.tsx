@@ -90,6 +90,17 @@ const StartGameButton = styled.div`
   justify-content: center;
   margin-top: 95px;
 `;
+const gameModes = {
+  ASC_MODE: "asc",
+  DESC_MODE: "desc",
+};
+const randomIntFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+const themes = ["candies", "flowers", "toys", "coins"];
+const theme = themes[randomIntFromInterval(0, 3)];
+
 
 const Home = () => {
   const [countOfElementsForGame, setCountOfElementsForGame] = useState(2);
@@ -103,17 +114,6 @@ const Home = () => {
   const changeStatusGame = () => {
     setSettingOfGame(!settingOfGame);
   };
-  const randomIntFromInterval = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  };
-
-  const gameModes = {
-    ASC_MODE: "asc",
-    DESC_MODE: "desc",
-  };
-
-  const themes = ["candies", "flowers", "toys", "coins"];
-  const theme = themes[randomIntFromInterval(0, 3)];
 
   const gameSettingPage = (
     <div>

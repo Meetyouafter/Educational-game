@@ -208,15 +208,16 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
 
         <div
           css={css`
-            height: 320px;
-            width: 990px;
+            height: 230px;
+            width: 900px;
+            margin-left: 40px;
             background-image: url("/static/${theme}/container.png");
             background-repeat: round;
             border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 0px;
+            margin-top: 40px;
           `}
         >
           <Droppable droppableId="droppable-2" direction="horizontal">
@@ -230,6 +231,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
                   column-gap: 4px;
                   align-items: center;
                   justify-content: center;
+                  height: 500px;
                 `}
               >
                 {gameMode === gameModes.ASC_MODE && (

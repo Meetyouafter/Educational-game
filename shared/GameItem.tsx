@@ -3,12 +3,12 @@ import styled from "@emotion/styled";
 const Text = styled.span`
   font-family: Calibri;
   font-style: normal;
-  font-weight: 400;
-  font-size: 56px;
+  font-weight: 700;
+  font-size: 68px;
   line-height: 68px;
   letter-spacing: 2px;
-  color: #ffffff;
-  -webkit-text-stroke: 3px #242546;
+  color: #242546;
+  -webkit-text-stroke: 2px white;
   position: absolute;
   z-index: 1;
 `;

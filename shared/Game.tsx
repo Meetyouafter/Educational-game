@@ -114,36 +114,19 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
 
     const newItems = items.filter((item, idx) => idx !== result.source.index);
     if (gameMode === gameModes.ASC_MODE) {
-      if (elementType !== "A") {
-        const min = Math.min(...items.map((item) => item.content));
-        if (itemToMove.content <= min) {
+        const min = Math.min(...items.map((item) => (elementType !== "A") ? item.content : item.value));
+        if (((elementType !== "A") ? itemToMove.content : itemToMove.value) <= min) {
           setItems(newItems);
           setFinalItems([...finalItems, itemToMove]);
         }
       }
-      if (elementType === "A") {
-        const min = Math.min(...items.map((item) => item.value));
-        if (itemToMove.value <= min) {
-          setItems(newItems);
-          setFinalItems([...finalItems, itemToMove]);
-        }
-      }
-    }
     if (gameMode === gameModes.DESC_MODE) {
-      if (elementType !== "A") {
-        const max = Math.max(...items.map((item) => item.content));
-        if (itemToMove.content >= max) {
-          setItems(newItems);
-          setFinalItems([itemToMove, ...finalItems]);
-        }
-      } else {
-        const max = Math.max(...items.map((item) => item.value));
-        if (itemToMove.value >= max) {
+        const max = Math.max(...items.map((item) => (elementType !== "A") ? item.content : item.value));
+        if (((elementType !== "A") ? itemToMove.content : itemToMove.value) >= max) {
           setItems(newItems);
           setFinalItems([itemToMove, ...finalItems]);
         }
       }
-    }
   };
   const NewEmptyItem = () => (
     <div

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
+import styled from "@emotion/styled";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import GameItem from "./GameItem";
 import { css } from "@emotion/react";
@@ -10,12 +11,28 @@ const gameModes = {
   DESC_MODE: "desc",
 };
 
+const ImageForUpMode = styled.img`
+  position: absolute;
+  left: 53px;
+  top: 480px;
+`;
+const ImageForDownMode = styled.img`
+  position: absolute;
+  left: 600px;
+  top: 480px;
+`;
+const WrapperForGame = styled.div`
+  width: 980px;
+  height: 810px;
+  background-image: ${({ theme }) =>
+    `url(${`/static/${theme}/background.png`})`};
+  borderradius: 50px;
+`;
+
 const getItemStyle = (isDragging, draggableStyle) => ({
   userSelect: "none",
-  // margin: 5, //distanse between elements
   borderRadius: 100,
   marginTop: 0,
-
   width: 131,
   height: 131,
   ...draggableStyle,
@@ -114,19 +131,31 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
 
     const newItems = items.filter((item, idx) => idx !== result.source.index);
     if (gameMode === gameModes.ASC_MODE) {
-        const min = Math.min(...items.map((item) => (elementType !== "A") ? item.content : item.value));
-        if (((elementType !== "A") ? itemToMove.content : itemToMove.value) <= min) {
-          setItems(newItems);
-          setFinalItems([...finalItems, itemToMove]);
-        }
+      const min = Math.min(
+        ...items.map((item) =>
+          elementType !== "A" ? item.content : item.value
+        )
+      );
+      if (
+        (elementType !== "A" ? itemToMove.content : itemToMove.value) <= min
+      ) {
+        setItems(newItems);
+        setFinalItems([...finalItems, itemToMove]);
       }
+    }
     if (gameMode === gameModes.DESC_MODE) {
-        const max = Math.max(...items.map((item) => (elementType !== "A") ? item.content : item.value));
-        if (((elementType !== "A") ? itemToMove.content : itemToMove.value) >= max) {
-          setItems(newItems);
-          setFinalItems([itemToMove, ...finalItems]);
-        }
+      const max = Math.max(
+        ...items.map((item) =>
+          elementType !== "A" ? item.content : item.value
+        )
+      );
+      if (
+        (elementType !== "A" ? itemToMove.content : itemToMove.value) >= max
+      ) {
+        setItems(newItems);
+        setFinalItems([itemToMove, ...finalItems]);
       }
+    }
   };
   const NewEmptyItem = () => (
     <div
@@ -140,7 +169,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
   );
 
   return (
-    <>
+    <WrapperForGame theme={theme}>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable-1" direction="horizontal">
           {(provided, snapshot) => (
@@ -250,14 +279,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
                     {items.map((item) => (
                       <NewEmptyItem key={item.id} />
                     ))}
-                    <img
-                      css={css`
-                        position: absolute;
-                        left: 53px;
-                        top: 480px;
-                      `}
-                      src="/static/upMode.png"
-                    />
+                    <ImageForUpMode src="/static/upMode.png" />
                   </>
                 )}
 
@@ -294,14 +316,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
                         )}
                       </Draggable>
                     ))}
-                    <img
-                      css={css`
-                        position: absolute;
-                        left: 600px;
-                        top: 480px;
-                      `}
-                      src="/static/downMode.png"
-                    />
+                    <ImageForDownMode src="/static/downMode.png" />
                   </>
                 )}
               </div>
@@ -310,7 +325,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
         </div>
       </DragDropContext>
       {finalItems.length === count + 1 && <WinModal />}
-    </>
+    </WrapperForGame>
   );
 };
 

@@ -21,13 +21,18 @@ const ImageForDownMode = styled.img`
   left: 600px;
   top: 480px;
 `;
+const WrapperForGame = styled.div`
+  width: 980px;
+  height: 810px;
+  background-image: ${({ theme }) =>
+    `url(${`/static/${theme}/background.png`})`};
+  borderradius: 50px;
+`;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   userSelect: "none",
-  // margin: 5, //distanse between elements
   borderRadius: 100,
   marginTop: 0,
-
   width: 131,
   height: 131,
   ...draggableStyle,
@@ -164,7 +169,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
   );
 
   return (
-    <>
+    <WrapperForGame theme={theme}>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable-1" direction="horizontal">
           {(provided, snapshot) => (
@@ -320,7 +325,7 @@ const GameLogic = ({ gameMode, count, theme, elementType }) => {
         </div>
       </DragDropContext>
       {finalItems.length === count + 1 && <WinModal />}
-    </>
+    </WrapperForGame>
   );
 };
 
